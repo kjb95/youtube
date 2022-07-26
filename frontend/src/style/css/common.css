@@ -1,0 +1,25 @@
+body {
+  background-color: black;
+  white-space: pre-wrap;
+}
+
+textarea {
+  margin: 1vw;
+  height: 30vh;
+  border: double;
+  resize: none;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+  zoom: 1.3;
+}
+
+li{
+  list-style:none;
+}

@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  db:
+    container_name: db
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=youtube
+      - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - "./db:/var/lib/mysql"
+
+  frontend:
+    container_name: frontend
+    depends_on:
+      - backend
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    volumes:
+      - "./frontend:/app"
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+
+  backend:
+    container_name: backend
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/youtube?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    restart: always
