@@ -23,11 +23,6 @@ public class VideoService {
         publishedAtStr = publishedAtStr.substring(0, publishedAtStr.length()-1);
         LocalDateTime publishedAt = LocalDateTime.parse(publishedAtStr);
 
-        String subscriberCountStr = (String)playlist.get("subscriberCount");
-        Long subscriberCount = null;
-        if (subscriberCountStr != null)
-            subscriberCount = Long.parseLong(subscriberCountStr);
-
         Video video = Video.builder()
             .id((String)playlist.get("id"))
             .channelId((String)playlist.get("channelId"))
@@ -36,9 +31,14 @@ public class VideoService {
             .title((String)playlist.get("title"))
             .publishedAt(publishedAt)
             .viewCount(Long.parseLong((String)playlist.get("viewCount")))
-            .subscriberCount(subscriberCount)
             .isExist(true)
             .build();
+
+        String subscriberCountStr = (String)playlist.get("subscriberCount");
+        if (subscriberCountStr != null)
+            video.setSubscriberCount(Long.parseLong(subscriberCountStr));
+        else
+            video.setSubscriberCount(-1);
 
         videoRepository.save(video);
     }
@@ -47,7 +47,9 @@ public class VideoService {
         Duration duration = Duration.between(video.getPublishedAt(), LocalDateTime.now());
         String durationString = Calculator.calculateDuration(duration.getSeconds());
         String viewCountString = Calculator.NumberToString("조회수 ", video.getViewCount(), "회");
-        String subscriberCountString = Calculator.NumberToString("구독자 " , video.getSubscriberCount(), "명");
+        String subscriberCountString = "";
+        if (video.getSubscriberCount() < 0)
+            subscriberCountString = Calculator.NumberToString("구독자 " , video.getSubscriberCount(), "명");
 
         VideoDto videoDto = VideoDto.builder()
             .id(video.getId())

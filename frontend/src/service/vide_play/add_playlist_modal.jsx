@@ -11,7 +11,7 @@ export const addPlaylist = (
   setId
 ) => {
   getYoutubeData(id).then(playlist => {
-    axios.post('/http://localhost:8080/api/playlist', playlist).then(() => {
+    axios.post('http://localhost:8080/api/playlist', playlist).then(() => {
       setAddPlaylistModal(false);
       setId("");
     });
