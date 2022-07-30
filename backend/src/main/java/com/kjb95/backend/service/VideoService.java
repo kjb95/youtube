@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class VideoService {
@@ -40,6 +42,7 @@ public class VideoService {
         else
             video.setSubscriberCount(-1);
 
+        log.info("addPlaylist : {}", video.toString());
         videoRepository.save(video);
     }
 
@@ -93,6 +96,8 @@ public class VideoService {
         videoRepository.findAll().forEach(video -> {
             if (playlistIds.get(video.getId()) == null)
                 return ;
+
+            log.info("deletePlaylist : {}", video.toString());
             video.setExist(false);
             videoRepository.save(video);
         });

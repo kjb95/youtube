@@ -36,4 +36,19 @@ public class Video {
     private long subscriberCount;
     @Column
     private boolean isExist;
+
+    @Override
+    public String toString() {
+        return "Video{" +
+            "id='" + id + '\'' +
+            ", channelId='" + channelId + '\'' +
+            ", channelTitle='" + channelTitle + '\'' +
+            ", description='" + description + '\'' +
+            ", title='" + title + '\'' +
+            ", publishedAt=" + publishedAt +
+            ", viewCount=" + viewCount +
+            ", subscriberCount=" + subscriberCount +
+            ", isExist=" + isExist +
+            '}';
+    }
 }
