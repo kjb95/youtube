@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -28,9 +29,9 @@ public class VideoController {
     }
 
     @GetMapping("/api/playlist")
-    public List<VideoDto> getPlaylist() {
+    public List<VideoDto> getPlaylist(@RequestParam("lang") String lang) {
         log.info("Get /api/playlist");
-        return this.videoService.getPlaylist();
+        return this.videoService.getPlaylist(lang);
     }
     @PostMapping("/api/playlist")
     public void addPlaylist(@RequestBody Map<String,Object> playlist) {
@@ -45,9 +46,9 @@ public class VideoController {
     }
 
     @GetMapping("/api/playlist/random")
-    public List<VideoDto> getRandomPlaylist() {
+    public List<VideoDto> getRandomPlaylist(@RequestParam("lang") String lang) {
         log.info("Get /api/playlist/random");
-        return this.videoService.getRandomPlaylist();
+        return this.videoService.getRandomPlaylist(lang);
     }
 
 }

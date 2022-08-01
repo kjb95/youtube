@@ -46,13 +46,20 @@ public class VideoService {
         videoRepository.save(video);
     }
 
-    private VideoDto videoToVideoDto(Video video) {
+    private VideoDto videoToVideoDto(Video video, String lang) {
         Duration duration = Duration.between(video.getPublishedAt(), LocalDateTime.now());
-        String durationString = Calculator.calculateDuration(duration.getSeconds());
-        String viewCountString = Calculator.NumberToString("조회수 ", video.getViewCount(), "회");
+        String durationString = Calculator.calculateDuration(duration.getSeconds(), lang);
+
+        String viewCountString = "";
         String subscriberCountString = "";
-        if (video.getSubscriberCount() < 0)
-            subscriberCountString = Calculator.NumberToString("구독자 " , video.getSubscriberCount(), "명");
+        if (lang.equals("ko")) {
+            viewCountString = Calculator.NumberToString("조회수 ", video.getViewCount(), "회", lang);
+            subscriberCountString = Calculator.NumberToString("구독자 " , video.getSubscriberCount(), "명", lang);
+        }
+        else if (lang.equals("en")) {
+            viewCountString = Calculator.NumberToString("", video.getViewCount(), " views", lang);
+            subscriberCountString = Calculator.NumberToString("" , video.getSubscriberCount(), " subscribers", lang);
+        }
 
         VideoDto videoDto = VideoDto.builder()
             .id(video.getId())
@@ -68,11 +75,11 @@ public class VideoService {
         return videoDto;
     }
     
-    public List<VideoDto> getPlaylist() {
+    public List<VideoDto> getPlaylist(String lang) {
         List<VideoDto> videoDtoList = new ArrayList();
         List<Video> videoList = videoRepository.findAll();
         for(int i=0; i<videoList.size(); i++)
-            videoDtoList.add(videoToVideoDto(videoList.get(i)));
+            videoDtoList.add(videoToVideoDto(videoList.get(i), lang));
         return videoDtoList;
     }
 
@@ -86,9 +93,9 @@ public class VideoService {
         return videoDtoList;
     }
 
-    public List<VideoDto> getRandomPlaylist() {
+    public List<VideoDto> getRandomPlaylist(String lang) {
         List<VideoDto> videoDtoList = new ArrayList();
-        videoRepository.findAll().forEach(video -> videoDtoList.add(videoToVideoDto(video)));
+        videoRepository.findAll().forEach(video -> videoDtoList.add(videoToVideoDto(video, lang)));
         return combineVideoDtoList(videoDtoList);
     }
 

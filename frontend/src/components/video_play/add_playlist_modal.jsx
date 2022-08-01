@@ -5,12 +5,14 @@ import {
   AddPlaylistFormBox,
 } from "../../style/styled_component/video_play";
 import {inputChange, addPlaylist, closeModal} from '../../service/vide_play/add_playlist_modal';
+import {useTranslation} from "react-i18next";
 
 const AddPlaylistModal = ({
   addPlaylistModal,
   setAddPlaylistModal,
 }) => {
   const [id, setId] = useState('');
+  const { t } = useTranslation();
 
   return (
     <Modal
@@ -18,7 +20,7 @@ const AddPlaylistModal = ({
       ariaHideApp={false}
       style={{ content: { width: "25%", height: "10%" } }}>
       <AddPlaylistFormBox>
-        {"유튜브 동영상 아이디 : "}
+        {t('youtubeVideoID') + " : "}
         <input 
           type="text" 
           name="id" 
@@ -30,6 +32,7 @@ const AddPlaylistModal = ({
       <AddPlaylistButtonsSection>
         <input
           type="submit"
+          value={t('submit')}
           onClick={() => {
             addPlaylist(
               id,
@@ -37,7 +40,7 @@ const AddPlaylistModal = ({
               setId
             );
           }}/>
-        <button onClick={() => { closeModal(setAddPlaylistModal, setId); }}>닫기</button>
+        <button onClick={() => { closeModal(setAddPlaylistModal, setId); }}>{t('close')}</button>
       </AddPlaylistButtonsSection>
     </Modal>
   );

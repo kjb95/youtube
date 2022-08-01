@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import ReactPlayer from "react-player";
 import qs from "qs";
 import axios from 'axios';
+import {useTranslation} from "react-i18next";
 
 import {
   fetchNotice,
@@ -66,10 +67,15 @@ const VideoPlay = () => {
   const brieflyRef = useRef();
   const descriptionRef = useRef();
 
+  const { t, i18n } = useTranslation();
+
   useEffect(() => {
     //  window.localStorage.clear();
-    axios.get('http://localhost:8080/api/playlist').then(res => setSequentialPlaylist(res.data));
-    axios.get('http://localhost:8080/api/playlist/random').then(res => setRandomPlaylist(res.data));
+    const lang = localStorage.getItem('lang');
+    const langParameter = (lang === null) ? 'ko' : lang;
+
+    axios.get(`http://localhost:8080/api/playlist?lang=${langParameter}`).then(res => setSequentialPlaylist(res.data));
+    axios.get(`http://localhost:8080/api/playlist/random?lang=${langParameter}`).then(res => setRandomPlaylist(res.data));
     fetchNotice().then((data) => setNotice(data));
 
     const isRandom = localStorage.getItem('isRandom');
@@ -77,7 +83,7 @@ const VideoPlay = () => {
       setRandom(true);
     else
       setRandom(false);
-  }, [addPlaylistModal, playlistDataUpdate]);
+  }, [addPlaylistModal, playlistDataUpdate, i18n, t]);
 
   useEffect(() => {
     if (!sequentialPlaylist || !randomPlaylist)
@@ -180,17 +186,15 @@ const VideoPlay = () => {
             onClick={() => {
               viewMore(viewMoreRef, descriptionRef, brieflyRef);
             }}
-            ref={viewMoreRef}
-          >
-            더보기
+            ref={viewMoreRef}>
+            {t('viewMore')}
           </PlayingVideoDiscriptionViewMore>
           <PlayingVideoDescriptionBriefly
             onClick={() => {
               briefly(viewMoreRef, descriptionRef, brieflyRef);
             }}
-            ref={brieflyRef}
-          >
-            간략히
+            ref={brieflyRef}>
+            {t('briefly')}
           </PlayingVideoDescriptionBriefly>
         </PlayingVideoDiscriptionSection3>
       </PlayingVideoMain>

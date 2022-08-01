@@ -4,6 +4,7 @@ import {
   NoticeDoNotSeeTodayInput,
   NoticeImg,
 } from "../../style/styled_component/video_play";
+import {useTranslation} from "react-i18next";
 
 const NoticeElement = ({
   title,
@@ -13,6 +14,8 @@ const NoticeElement = ({
   noticeClose,
   clickDoNotSeeToday,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <NoticeCloseButtonImg
@@ -30,7 +33,7 @@ const NoticeElement = ({
         name={name}
         onClick={clickDoNotSeeToday}
       />
-      <span>오늘 하루 보지 않기</span>
+      <span>{t('doNotSeeToday')}</span>
     </>
   );
 };
