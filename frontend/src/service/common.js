@@ -62,8 +62,7 @@ export async function getYoutubeData(id) {
     title: data1.title,
     publishedAt: data1.publishedAt,
     viewCount: data2.statistics.viewCount,
-    subscriberCount: data3.statistics.subscriberCount,
-    exist: true
+    subscriberCount: data3.statistics.subscriberCount
   }
 }
 

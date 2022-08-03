@@ -1,5 +1,6 @@
 package com.kjb95.backend.controller;
 
+import com.kjb95.backend.dto.AddPlaylistDto;
 import com.kjb95.backend.dto.VideoDto;
 import com.kjb95.backend.service.VideoService;
 import java.util.Arrays;
@@ -23,9 +24,9 @@ public class VideoController {
     private final VideoService videoService;
 
     @PostMapping("/api/playlist/initial-value")
-    public void playlistInitialValue(@RequestBody Map<String,Object>[] playlist) {
+    public void playlistInitialValue(@RequestBody AddPlaylistDto[] playlists) {
         log.info("Post /api/playlist/initial-value");
-        Arrays.stream(playlist).forEach(videoService::addPlaylist);
+        Arrays.stream(playlists).forEach(videoService::addPlaylist);
     }
 
     @GetMapping("/api/playlist")
@@ -34,12 +35,12 @@ public class VideoController {
         return this.videoService.getPlaylist(lang);
     }
     @PostMapping("/api/playlist")
-    public void addPlaylist(@RequestBody Map<String,Object> playlist) {
+    public void addPlaylist(@RequestBody AddPlaylistDto playlist) {
         log.info("Post /api/playlist");
         videoService.addPlaylist(playlist);
     }
     @DeleteMapping("/api/playlist")
-    public boolean deletePlaylist(@RequestBody Map<String,Object> playlistIds) {
+    public boolean deletePlaylist(@RequestBody Map<String,Boolean> playlistIds) {
         log.info("Delete /api/playlist");
         videoService.deletePlaylist(playlistIds);
         return true;
@@ -50,5 +51,4 @@ public class VideoController {
         log.info("Get /api/playlist/random");
         return this.videoService.getRandomPlaylist(lang);
     }
-
 }
