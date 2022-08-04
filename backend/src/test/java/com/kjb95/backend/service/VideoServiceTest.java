@@ -36,7 +36,6 @@ class VideoServiceTest {
             .title("박재범")
             .publishedAt("2022-07-28T02:52:58Z")
             .viewCount(1234)
-            .isExist(true)
             .build();
     }
 

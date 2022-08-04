@@ -13,10 +13,12 @@ const init = async () => {
   const filePath = path.join(__dirname, "../../public/json/playlist.json");  // 찾으려는 파일의 경로
   const jsonFile = fs.readFileSync(filePath);
   const jsonData = JSON.parse(jsonFile);
-  let playlist = [];
+  let playlist = {
+    addPlaylistDtoList: []
+  };
 
   for(let i=0; i<jsonData.playlist.length; i++)
-      playlist.push(await getYoutubeData(jsonData.playlist[i].id));
+      playlist.addPlaylistDtoList.push(await getYoutubeData(jsonData.playlist[i].id));
   axios.post('http://localhost:8080/api/playlist/initial-value',playlist)
     .then(res => {
       console.log('res : ', res);
