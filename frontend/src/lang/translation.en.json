@@ -14,5 +14,10 @@
   "password": "Password",
   "idInput": "Enter Your ID",
   "passwordInput": "Enter Your Password",
-  "signUp": "Sign Up"
+  "signUp": "Sign Up",
+  "confirmPassword": "Confirm Password",
+  "nickname": "Nickname",
+  "nicknameInput": "Enter Your Nickname",
+  "createAccount": "Create Account",
+  "goToLoginPage": "Go To Login Page"
 }

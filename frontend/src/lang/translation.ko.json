@@ -14,5 +14,10 @@
   "password": "비밀번호",
   "idInput": "아이디를 입력하세요",
   "passwordInput": "비밀번호를 입력하세요",
-  "signUp": "회원가입"
+  "signUp": "회원가입",
+  "confirmPassword": "비밀번호를 다시 입력하세요",
+  "nickname": "닉네임",
+  "nicknameInput": "닉네임을 입력하세요",
+  "createAccount": "계정 생성",
+  "goToLoginPage": "로그인 페이지로 이동"
 }

@@ -21,7 +21,7 @@ function Login() {
             <label>
               <LoginInformationP>{t('id')} </LoginInformationP>
               <input type="text" placeholder={t('idInput')} className="size"/>
-              <p></p>
+              <p/>
             </label>
             <label>
               <LoginInformationP>{t('password')} </LoginInformationP>
@@ -33,7 +33,7 @@ function Login() {
           </form>
           <hr/>
           <p className="find">
-            <span><a href="#!">{t('signUp')}</a></span>
+            <span><a href="/sign-up">{t('signUp')}</a></span>
           </p>
         </div>
       </div>

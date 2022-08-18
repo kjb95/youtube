@@ -12,6 +12,7 @@ import VideoPlay from "./pages/video_play";
 import {useTranslation} from "react-i18next";
 import Navigation from "./components/navigation/navigation.jsx";
 import Login from "./components/login/login.jsx";
+import SignUp from "./components/login/sign_up";
 
 function App() {
   const [language, setLanguage] = useState(null);
@@ -46,6 +47,7 @@ function App() {
             }
           />
           <Route path='/login' element={<Login/>} />
+          <Route path='/sign-up' element={<SignUp/>} />
         </Routes>
       </BrowserRouter>
     </>
