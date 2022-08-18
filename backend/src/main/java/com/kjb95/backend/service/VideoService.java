@@ -1,6 +1,6 @@
 package com.kjb95.backend.service;
 
-import com.kjb95.backend.dto.AddPlaylistDto;
+import com.kjb95.backend.dto.AddVideoDto;
 import com.kjb95.backend.dto.VideoDto;
 import com.kjb95.backend.entity.Video;
 import com.kjb95.backend.repository.VideoRepository;
@@ -21,31 +21,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class VideoService {
     private final VideoRepository videoRepository;
 
-    public void addPlaylist(AddPlaylistDto addPlaylistDto) {
-        Video video = addPlaylistDtoToVideo(addPlaylistDto);
-        log.info("addPlaylist : {}", video.toString());
+    public void addVideo(AddVideoDto addVideoDto) {
+        Video video = addVideoDtoToVideo(addVideoDto);
+        log.info("addVideo : {}", video.toString());
         videoRepository.save(video);
     }
 
-    private Video addPlaylistDtoToVideo(AddPlaylistDto addPlaylistDto) {
-        String publishedAtStr = addPlaylistDto.getPublishedAt();
+    private Video addVideoDtoToVideo(AddVideoDto addVideoDto) {
+        String publishedAtStr = addVideoDto.getPublishedAt();
         publishedAtStr = publishedAtStr.substring(0, publishedAtStr.length()-1);
         LocalDateTime publishedAt = LocalDateTime.parse(publishedAtStr);
 
         Video video = Video.builder()
-            .id(addPlaylistDto.getId())
-            .channelId(addPlaylistDto.getChannelId())
-            .channelTitle(addPlaylistDto.getChannelTitle())
-            .description(addPlaylistDto.getDescription())
-            .title(addPlaylistDto.getTitle())
+            .id(addVideoDto.getId())
+            .channelId(addVideoDto.getChannelId())
+            .channelTitle(addVideoDto.getChannelTitle())
+            .description(addVideoDto.getDescription())
+            .title(addVideoDto.getTitle())
             .publishedAt(publishedAt)
-            .viewCount(addPlaylistDto.getViewCount())
+            .viewCount(addVideoDto.getViewCount())
             .isExist(true)
             .build();
-        if (addPlaylistDto.getSubscriberCount() == null)
+        if (addVideoDto.getSubscriberCount() == null)
             video.setSubscriberCount(-1);
         else
-            video.setSubscriberCount(addPlaylistDto.getSubscriberCount());
+            video.setSubscriberCount(addVideoDto.getSubscriberCount());
 
         return video;
     }
@@ -79,7 +79,7 @@ public class VideoService {
         return videoDto;
     }
     
-    public List<VideoDto> getPlaylist(String lang) {
+    public List<VideoDto> getVideo(String lang) {
         List<VideoDto> videoDtoList = new ArrayList();
         List<Video> videoList = videoRepository.findAll();
         for(int i=0; i<videoList.size(); i++)
@@ -97,18 +97,18 @@ public class VideoService {
         return videoDtoList;
     }
 
-    public List<VideoDto> getRandomPlaylist(String lang) {
+    public List<VideoDto> getRandomVideo(String lang) {
         List<VideoDto> videoDtoList = new ArrayList();
         videoRepository.findAll().forEach(video -> videoDtoList.add(videoToVideoDto(video, lang)));
         return combineVideoDtoList(videoDtoList);
     }
 
-    public void deletePlaylist(@RequestBody Map<String,Boolean> playlistIds) {
+    public void deleteVideo(@RequestBody Map<String,Boolean> videoIds) {
         videoRepository.findAll().forEach(video -> {
-            if (playlistIds.get(video.getId()) == null)
+            if (videoIds.get(video.getId()) == null)
                 return ;
 
-            log.info("deletePlaylist : {}", video.toString());
+            log.info("deleteVideo : {}", video.toString());
             video.setExist(false);
             videoRepository.save(video);
         });

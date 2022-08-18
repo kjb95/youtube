@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AddPlaylistDto {
+public class AddVideoDto {
     @NotNull(message = "아이디는 필수 입력값 입니다.")
     private String id;
     @NotNull(message = "채널 아이디는 필수 입력값 입니다.")

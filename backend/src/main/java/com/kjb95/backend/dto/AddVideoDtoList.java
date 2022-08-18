@@ -12,8 +12,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddPlaylistDtoList {
+public class AddVideoDtoList {
     @NotNull
     @Valid
-    private List<AddPlaylistDto> addPlaylistDtoList;
+    private List<AddVideoDto> addVideoDtoList;
 }

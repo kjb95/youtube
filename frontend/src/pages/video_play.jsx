@@ -74,8 +74,8 @@ const VideoPlay = () => {
     const lang = localStorage.getItem('lang');
     const langParameter = (lang === null) ? 'ko' : lang;
 
-    axios.get(`http://localhost:8080/api/playlist?lang=${langParameter}`).then(res => setSequentialPlaylist(res.data));
-    axios.get(`http://localhost:8080/api/playlist/random?lang=${langParameter}`).then(res => setRandomPlaylist(res.data));
+    axios.get(`http://localhost:8080/api/video?lang=${langParameter}`).then(res => setSequentialPlaylist(res.data));
+    axios.get(`http://localhost:8080/api/video/random-value?lang=${langParameter}`).then(res => setRandomPlaylist(res.data));
     fetchNotice().then((data) => setNotice(data));
 
     const isRandom = localStorage.getItem('isRandom');

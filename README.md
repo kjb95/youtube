@@ -52,7 +52,9 @@ https://user-images.githubusercontent.com/107471786/173803477-3b4367f4-5908-4493
 
 ### 5. 프로젝트 개선 (현재 진행형)
 이 프로젝트를 통해 전반적인 웹 개발 과정을 경험해 보았습니다.
+
 프론트엔드와 백엔드 둘 다 조금씩 경험해본 결과, 각각의 다른 매력을 느껴서 프론트를 잘 아는 백엔드 개발자가 되고 싶어졌습니다.
+
 프로젝트 개선사항들은 다음 아래와 같습니다.
 
 - JUnit5, AssertJ 를 이용하여 간단한 테스트 코드 작성
@@ -61,6 +63,5 @@ https://user-images.githubusercontent.com/107471786/173803477-3b4367f4-5908-4493
 
 https://user-images.githubusercontent.com/107471786/182569742-fa301ae5-57c7-4edf-9e31-e51a3ee57649.mov
 
-- Feat: @Validated를 이용한 유효성 검증
-- RESTful API 규칙 적용 (진행중)
-- Oauth 이용한 로그인 기능 구현 (진행중)
+- @Validated를 이용한 유효성 검증
+- RESTful API 규칙 적용

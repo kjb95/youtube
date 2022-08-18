@@ -19,7 +19,7 @@ const init = async () => {
 
   for(let i=0; i<jsonData.playlist.length; i++)
       playlist.addPlaylistDtoList.push(await getYoutubeData(jsonData.playlist[i].id));
-  axios.post('http://localhost:8080/api/playlist/initial-value',playlist)
+  axios.post('http://localhost:8080/api/video/initial-value',playlist)
     .then(res => {
       console.log('res : ', res);
     }).catch(function(err) {

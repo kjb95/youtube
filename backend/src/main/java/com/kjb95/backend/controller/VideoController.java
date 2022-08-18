@@ -1,8 +1,8 @@
 package com.kjb95.backend.controller;
 
 import com.kjb95.backend.constant.Languages;
-import com.kjb95.backend.dto.AddPlaylistDto;
-import com.kjb95.backend.dto.AddPlaylistDtoList;
+import com.kjb95.backend.dto.AddVideoDto;
+import com.kjb95.backend.dto.AddVideoDtoList;
 import com.kjb95.backend.dto.VideoDto;
 import com.kjb95.backend.service.VideoService;
 import java.util.List;
@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("/api/video")
 @PropertySource(value="classpath:static/errors.properties")
 @Slf4j
 @CrossOrigin(origins={"http://localhost:3000"})
@@ -33,48 +35,48 @@ public class VideoController {
     @Value("${unsupported-languages}")
     private String unsupportedLanguages;
 
-    @PostMapping("/api/playlist/initial-value")
-    public void playlistInitialValue(@Validated @RequestBody AddPlaylistDtoList playlists, BindingResult bindingResult) {
-        log.info("Post /api/playlist/initial-value");
+    @PostMapping("/initial-value")
+    public void videoInitialValue(@Validated @RequestBody AddVideoDtoList addVideoDtoList, BindingResult bindingResult) {
+        log.info("Post /api/video/initial-value");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
             return ;
         }
-        playlists.getAddPlaylistDtoList().forEach(videoService::addPlaylist);
+        addVideoDtoList.getAddVideoDtoList().forEach(videoService::addVideo);
     }
 
-    @GetMapping("/api/playlist")
-    public List<VideoDto> getPlaylist(@RequestParam("lang") String lang) {
-        log.info("Get /api/playlist");
+    @GetMapping()
+    public List<VideoDto> getVideo(@RequestParam("lang") String lang) {
+        log.info("Get /api/video");
         if (!languages.getLanguages().contains(lang)) {
             log.error(unsupportedLanguages);
             return null;
         }
-        return this.videoService.getPlaylist(lang);
+        return this.videoService.getVideo(lang);
     }
-    @PostMapping("/api/playlist")
-    public void addPlaylist(@Validated @RequestBody AddPlaylistDto playlist, BindingResult bindingResult) {
-        log.info("Post /api/playlist");
+    @PostMapping()
+    public void addVideo(@Validated @RequestBody AddVideoDto addVideoDto, BindingResult bindingResult) {
+        log.info("Post /api/video");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
             return ;
         }
-        videoService.addPlaylist(playlist);
+        videoService.addVideo(addVideoDto);
     }
-    @DeleteMapping("/api/playlist")
-    public boolean deletePlaylist(@RequestBody Map<String,Boolean> playlistIds) {
-        log.info("Delete /api/playlist");
-        videoService.deletePlaylist(playlistIds);
+    @DeleteMapping()
+    public boolean deleteVideo(@RequestBody Map<String,Boolean> videoIds) {
+        log.info("Delete /api/video");
+        videoService.deleteVideo(videoIds);
         return true;
     }
 
-    @GetMapping("/api/playlist/random")
-    public List<VideoDto> getRandomPlaylist(@RequestParam("lang") String lang) {
-        log.info("Get /api/playlist/random");
+    @GetMapping("/random-value")
+    public List<VideoDto> getRandomVideo(@RequestParam("lang") String lang) {
+        log.info("Get /api/video/random-value");
         if (!languages.getLanguages().contains(lang)) {
             log.error(unsupportedLanguages);
             return null;
         }
-        return this.videoService.getRandomPlaylist(lang);
+        return this.videoService.getRandomVideo(lang);
     }
 }

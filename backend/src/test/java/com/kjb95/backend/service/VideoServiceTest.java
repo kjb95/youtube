@@ -1,6 +1,6 @@
 package com.kjb95.backend.service;
 
-import com.kjb95.backend.dto.AddPlaylistDto;
+import com.kjb95.backend.dto.AddVideoDto;
 import com.kjb95.backend.entity.Video;
 import com.kjb95.backend.repository.VideoRepository;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ class VideoServiceTest {
     VideoService videoService;
     @Autowired
     VideoRepository videoRepository;
-    AddPlaylistDto playlistWithoutSubscriberCount;
+    AddVideoDto videoWithoutSubscriberCount;
 
     @BeforeEach
     public void beforeEach() {
@@ -29,7 +29,7 @@ class VideoServiceTest {
         if (video != null)
             videoRepository.delete(video);
 
-        playlistWithoutSubscriberCount = AddPlaylistDto.builder()
+        videoWithoutSubscriberCount = AddVideoDto.builder()
             .id("EVDWHCOlbOw")
             .channelId("UCEEGx5rpyzmcukyZmqr-MnA")
             .channelTitle("알앤비박사장")
@@ -41,23 +41,23 @@ class VideoServiceTest {
 
     @Test
     @DisplayName("구독자수 비공개면 구독자 수는 0명 이하")
-    public void addPlaylistTest() {
-        videoService.addPlaylist(playlistWithoutSubscriberCount);
-        Video video = videoRepository.findById(playlistWithoutSubscriberCount.getId());
+    public void addVideo() {
+        videoService.addVideo(videoWithoutSubscriberCount);
+        Video video = videoRepository.findById(videoWithoutSubscriberCount.getId());
         assertThat(video.getSubscriberCount()).isLessThan(0);
     }
 
     @Test
     @DisplayName("플레이리스트 삭제")
-    public void deletePlaylist() {
-        videoService.addPlaylist(playlistWithoutSubscriberCount);
-        String id = playlistWithoutSubscriberCount.getId();
+    public void deleteVideo() {
+        videoService.addVideo(videoWithoutSubscriberCount);
+        String id = videoWithoutSubscriberCount.getId();
         Video video = videoRepository.findById(id);
         assertThat(video.isExist()).isEqualTo(true);
 
-        Map<String,Boolean> playlistIds = new HashMap<>();
-        playlistIds.put(id, true);
-        videoService.deletePlaylist(playlistIds);
+        Map<String,Boolean> videoIds = new HashMap<>();
+        videoIds.put(id, true);
+        videoService.deleteVideo(videoIds);
         video = videoRepository.findById(id);
         assertThat(video.isExist()).isEqualTo(false);
     }
