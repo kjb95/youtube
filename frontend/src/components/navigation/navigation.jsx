@@ -5,6 +5,7 @@ import {
   NavigationLeftBox, NavigationRightBox
 } from "../../style/styled_component/navigation";
 import Home from "./home.jsx";
+import LoginButton from "./login_button.jsx";
 
 function Navigation({language, setLanguage}) {
   return (
@@ -14,6 +15,7 @@ function Navigation({language, setLanguage}) {
         </NavigationLeftBox>
         <NavigationRightBox>
           <SelectLanguage language={language} setLanguage={setLanguage} />
+          <LoginButton/>
         </NavigationRightBox>
       </NavigationBox>
   );

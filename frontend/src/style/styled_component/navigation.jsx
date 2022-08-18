@@ -4,12 +4,16 @@ export const NavigationBox = styled.div`
   margin-bottom:3%;
   font-weight: bold;
   display:flex;
+  white-space:nowrap;
 `;
 export const NavigationLeftBox = styled.div`
     margin: auto auto auto 3%;
 `;
 export const NavigationRightBox = styled.div`
-  margin: auto 3% auto auto;
+  margin: auto 10% auto auto;
+  & > * {
+    margin-left: 10%;
+  }
 `;
 
 export const SelectLanguageSpan = styled.span`
@@ -21,4 +25,11 @@ export const HomeSpan = styled.span`
   font-size: xx-large;
   color: white; 
   cursor: pointer;
-`
+`;
+
+export const LoginButtonSpan = styled.span`
+  color: white; 
+  cursor: pointer;
+  font-size: xx-large;
+  margin-left: 20%;
+`;

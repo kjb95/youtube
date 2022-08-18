@@ -7,5 +7,12 @@
   "korean": "Korean",
   "english": "English",
   "submit": "Submit",
-  "home": "Home"
+  "home": "Home",
+  "login": "Login",
+  "googleLogin": "Google Login",
+  "id": "ID",
+  "password": "Password",
+  "idInput": "Enter Your ID",
+  "passwordInput": "Enter Your Password",
+  "signUp": "Sign Up"
 }

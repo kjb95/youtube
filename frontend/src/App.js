@@ -11,6 +11,7 @@ import Index from "./pages/index";
 import VideoPlay from "./pages/video_play";
 import {useTranslation} from "react-i18next";
 import Navigation from "./components/navigation/navigation.jsx";
+import Login from "./components/login/login.jsx";
 
 function App() {
   const [language, setLanguage] = useState(null);
@@ -33,9 +34,9 @@ function App() {
       <Navigation language={language} setLanguage={setLanguage}/>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path='/' element={<Index />} />
           <Route
-            path="/video_play"
+            path='/video_play'
             element={
               <ShowPlaylistBox>
                 <HidePlaylistBox>
@@ -44,6 +45,7 @@ function App() {
               </ShowPlaylistBox>
             }
           />
+          <Route path='/login' element={<Login/>} />
         </Routes>
       </BrowserRouter>
     </>

@@ -7,5 +7,12 @@
   "korean": "한국어",
   "english": "영어",
   "submit": "제출",
-  "home": "홈"
+  "home": "홈",
+  "login": "로그인",
+  "googleLogin": "구글 로그인",
+  "id": "아이디",
+  "password": "비밀번호",
+  "idInput": "아이디를 입력하세요",
+  "passwordInput": "비밀번호를 입력하세요",
+  "signUp": "회원가입"
 }

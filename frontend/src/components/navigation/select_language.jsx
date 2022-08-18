@@ -11,7 +11,6 @@ const SelectLanguage = ({language, setLanguage}) => {
     <SelectLanguageSpan currentLanguage={language} language='ko' onClick={() => setLanguage('ko')}>
       {t('korean')}
     </SelectLanguageSpan>
-    &nbsp
     <SelectLanguageSpan currentLanguage={language} language='en' onClick={() => setLanguage('en')}>
       {t('english')}
     </SelectLanguageSpan>
