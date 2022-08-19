@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 public class Languages {
+
     List<String> languages;
+
     Languages() {
         languages = new ArrayList<>();
         languages.add("ko");

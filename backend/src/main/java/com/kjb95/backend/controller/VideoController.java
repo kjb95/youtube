@@ -23,12 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/api/video")
-@PropertySource(value="classpath:static/errors.properties")
+@PropertySource(value = "classpath:static/errors.properties")
 @Slf4j
-@CrossOrigin(origins={"http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequiredArgsConstructor
 public class VideoController {
+
     private final VideoService videoService;
     private final Languages languages;
 
@@ -36,11 +37,12 @@ public class VideoController {
     private String unsupportedLanguages;
 
     @PostMapping("/initial-value")
-    public void videoInitialValue(@Validated @RequestBody AddVideoDtoList addVideoDtoList, BindingResult bindingResult) {
+    public void videoInitialValue(@Validated @RequestBody AddVideoDtoList addVideoDtoList,
+        BindingResult bindingResult) {
         log.info("Post /api/video/initial-value");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
-            return ;
+            return;
         }
         addVideoDtoList.getAddVideoDtoList().forEach(videoService::addVideo);
     }
@@ -54,17 +56,20 @@ public class VideoController {
         }
         return videoService.getVideo(lang);
     }
+
     @PostMapping()
-    public void addVideo(@Validated @RequestBody AddVideoDto addVideoDto, BindingResult bindingResult) {
+    public void addVideo(@Validated @RequestBody AddVideoDto addVideoDto,
+        BindingResult bindingResult) {
         log.info("Post /api/video");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
-            return ;
+            return;
         }
         videoService.addVideo(addVideoDto);
     }
+
     @DeleteMapping()
-    public boolean deleteVideo(@RequestBody Map<String,Boolean> videoIds) {
+    public boolean deleteVideo(@RequestBody Map<String, Boolean> videoIds) {
         log.info("Delete /api/video");
         videoService.deleteVideo(videoIds);
         return true;

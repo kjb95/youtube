@@ -1,5 +1,7 @@
 package com.kjb95.backend.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.kjb95.backend.dto.AddVideoDto;
 import com.kjb95.backend.entity.Video;
 import com.kjb95.backend.repository.VideoRepository;
@@ -12,11 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 @WebAppConfiguration
 @SpringBootTest
 class VideoServiceTest {
+
     @Autowired
     VideoService videoService;
     @Autowired
@@ -26,8 +27,9 @@ class VideoServiceTest {
     @BeforeEach
     public void beforeEach() {
         Video video = videoRepository.findById("EVDWHCOlbOw");
-        if (video != null)
+        if (video != null) {
             videoRepository.delete(video);
+        }
 
         videoWithoutSubscriberCount = AddVideoDto.builder()
             .id("EVDWHCOlbOw")
@@ -55,7 +57,7 @@ class VideoServiceTest {
         Video video = videoRepository.findById(id);
         assertThat(video.isExist()).isEqualTo(true);
 
-        Map<String,Boolean> videoIds = new HashMap<>();
+        Map<String, Boolean> videoIds = new HashMap<>();
         videoIds.put(id, true);
         videoService.deleteVideo(videoIds);
         video = videoRepository.findById(id);

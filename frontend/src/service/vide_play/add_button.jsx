@@ -1,3 +1,3 @@
 export const openAddPlaylistModal = (setAddPlaylistModal) => {
-  setAddPlaylistModal(true);
+	setAddPlaylistModal(true);
 };

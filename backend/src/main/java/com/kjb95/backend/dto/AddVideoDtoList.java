@@ -13,6 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddVideoDtoList {
+
     @NotNull
     @Valid
     private List<AddVideoDto> addVideoDtoList;

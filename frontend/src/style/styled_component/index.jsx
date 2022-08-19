@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { OverflowBox } from './common';
+import {OverflowBox} from './common';
 
 export const PlaylistInformationBox = styled.div`
   color: gray;

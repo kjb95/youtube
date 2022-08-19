@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class AddUserResponseDto {
+
     private boolean isSuccess;
     private List<String> errorMessageList;
 

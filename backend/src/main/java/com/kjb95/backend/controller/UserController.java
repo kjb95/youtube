@@ -17,14 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/api/users")
 @Slf4j
-@CrossOrigin(origins={"http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
 
     @PostMapping
-    public AddUserResponseDto addUser(@Validated @RequestBody AddUserDto addUserDto, BindingResult bindingResult) {
+    public AddUserResponseDto addUser(@Validated @RequestBody AddUserDto addUserDto,
+        BindingResult bindingResult) {
         log.info("Post /api/users");
         if (bindingResult.hasErrors()) {
             log.error("errors={}", bindingResult.getAllErrors());

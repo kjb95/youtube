@@ -11,11 +11,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-@PropertySource(value="classpath:static/errors.properties")
+@PropertySource(value = "classpath:static/errors.properties")
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
 
     @Value("${overlap-id}")

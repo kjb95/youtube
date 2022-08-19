@@ -1,5 +1,7 @@
 package com.kjb95.backend.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.kjb95.backend.dto.AddUserDto;
 import com.kjb95.backend.dto.AddUserResponseDto;
 import com.kjb95.backend.entity.User;
@@ -11,11 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 @WebAppConfiguration
 @SpringBootTest
 public class UserServiceTest {
+
     @Autowired
     UserService userService;
     @Autowired

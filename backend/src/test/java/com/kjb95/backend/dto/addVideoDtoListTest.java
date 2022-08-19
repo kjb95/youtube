@@ -15,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @SpringBootTest
 public class addVideoDtoListTest {
+
     @Test
     @DisplayName("AddVideoDtoList @Validated 유효성 검사")
     public void addVideoDtoList() {

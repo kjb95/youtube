@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Service
 @RequiredArgsConstructor
 public class VideoService {
+
     private final VideoRepository videoRepository;
 
     public void addVideo(AddVideoDto addVideoDto) {
@@ -29,7 +30,7 @@ public class VideoService {
 
     private Video addVideoDtoToVideo(AddVideoDto addVideoDto) {
         String publishedAtStr = addVideoDto.getPublishedAt();
-        publishedAtStr = publishedAtStr.substring(0, publishedAtStr.length()-1);
+        publishedAtStr = publishedAtStr.substring(0, publishedAtStr.length() - 1);
         LocalDateTime publishedAt = LocalDateTime.parse(publishedAtStr);
 
         Video video = Video.builder()
@@ -42,10 +43,11 @@ public class VideoService {
             .viewCount(addVideoDto.getViewCount())
             .isExist(true)
             .build();
-        if (addVideoDto.getSubscriberCount() == null)
+        if (addVideoDto.getSubscriberCount() == null) {
             video.setSubscriberCount(-1);
-        else
+        } else {
             video.setSubscriberCount(addVideoDto.getSubscriberCount());
+        }
 
         return video;
     }
@@ -58,11 +60,12 @@ public class VideoService {
         String subscriberCountString = "";
         if (lang.equals("ko")) {
             viewCountString = Calculator.NumberToString("조회수 ", video.getViewCount(), "회", lang);
-            subscriberCountString = Calculator.NumberToString("구독자 " , video.getSubscriberCount(), "명", lang);
-        }
-        else if (lang.equals("en")) {
+            subscriberCountString = Calculator.NumberToString("구독자 ", video.getSubscriberCount(),
+                "명", lang);
+        } else if (lang.equals("en")) {
             viewCountString = Calculator.NumberToString("", video.getViewCount(), " views", lang);
-            subscriberCountString = Calculator.NumberToString("" , video.getSubscriberCount(), " subscribers", lang);
+            subscriberCountString = Calculator.NumberToString("", video.getSubscriberCount(),
+                " subscribers", lang);
         }
 
         VideoDto videoDto = VideoDto.builder()
@@ -78,19 +81,20 @@ public class VideoService {
             .build();
         return videoDto;
     }
-    
+
     public List<VideoDto> getVideo(String lang) {
         List<VideoDto> videoDtoList = new ArrayList();
         List<Video> videoList = videoRepository.findAll();
-        for(int i=0; i<videoList.size(); i++)
+        for (int i = 0; i < videoList.size(); i++) {
             videoDtoList.add(videoToVideoDto(videoList.get(i), lang));
+        }
         return videoDtoList;
     }
 
     private List<VideoDto> combineVideoDtoList(List<VideoDto> videoDtoList) {
-        for(int i=0; i<videoDtoList.size(); i++) {
+        for (int i = 0; i < videoDtoList.size(); i++) {
             VideoDto temp = videoDtoList.get(i);
-            int randomNumber = (int)(Math.random() * videoDtoList.size());
+            int randomNumber = (int) (Math.random() * videoDtoList.size());
             videoDtoList.set(i, videoDtoList.get(randomNumber));
             videoDtoList.set(randomNumber, temp);
         }
@@ -103,10 +107,11 @@ public class VideoService {
         return combineVideoDtoList(videoDtoList);
     }
 
-    public void deleteVideo(@RequestBody Map<String,Boolean> videoIds) {
+    public void deleteVideo(@RequestBody Map<String, Boolean> videoIds) {
         videoRepository.findAll().forEach(video -> {
-            if (videoIds.get(video.getId()) == null)
-                return ;
+            if (videoIds.get(video.getId()) == null) {
+                return;
+            }
 
             log.info("deleteVideo : {}", video.toString());
             video.setExist(false);

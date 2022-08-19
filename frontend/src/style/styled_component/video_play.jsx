@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { OverflowBox } from './common';
+import {OverflowBox} from './common';
 
 export const PlayingVideoInformationBox = styled.div`
   color: gray;
@@ -127,8 +127,7 @@ export const PlaylistAnchorBox = styled.div`
   & a {
     padding: 1%;
     display: flex;
-    background-color: ${(props) =>
-      props.playlistName === "current_playlist" ? "#dcdcdc" : "black"};
+    background-color: ${(props) => props.playlistName === "current_playlist" ? "#dcdcdc" : "black"};
   }
 `;
 

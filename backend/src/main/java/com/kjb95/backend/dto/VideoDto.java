@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class VideoDto {
+
     private String id;
     private String channelId;
     private String channelTitle;
