@@ -1,49 +1,19 @@
-import {
-  LoginInformationP,
-  LoginTitleH3, SignUpBox
-} from "../../style/styled_component/login.jsx";
-import {useTranslation} from "react-i18next";
+import axios from 'axios';
 
-function SignUp() {
-  const { t } = useTranslation();
+export const createAccount = async (id, password, nickname, setValidateSignUp, signUpSuccess) => {
+	const account = {
+		id: id,
+		password: password,
+		nickname: nickname
+	}
 
-  return <SignUpBox>
-    <div id="con">
-      <div id="login">
-        <div id="login_form">
-          <form>
-            <LoginTitleH3 className="login">{t('signUp')}</LoginTitleH3>
-            <hr/>
-            <label>
-              <LoginInformationP>{t('id')} </LoginInformationP>
-              <input type="text" placeholder={t('idInput')} className="size"/>
-              <p></p>
-            </label>
-            <label>
-              <LoginInformationP>{t('password')} </LoginInformationP>
-              <input type="text" placeholder={t('passwordInput')} className="size"/>
-              <p/>
-            </label>
-            <label>
-              <input type="password" placeholder={t('confirmPassword')} class="size"/>
-            </label>
-            <label>
-              <LoginInformationP>{t('nickname')} </LoginInformationP>
-              <input type="text" placeholder={t('nicknameInput')} className="size"/>
-            </label>
-            <br/>
-            <p>
-              <input type="submit" value={t('createAccount')} class="btn"/>
-            </p>
-          </form>
-          <hr/>
-          <p class="find">
-            <span><a href="/login">{t('goToLoginPage')}</a></span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </SignUpBox>
+	await axios.post('http://localhost:8080/api/users', account)
+			 .then(res => {
+				 res = res.data;
+				 if (res.success === true) {
+					 alert(signUpSuccess);
+					 window.location.href = '/login';
+				 }
+				 else setValidateSignUp(res.errorMessageList);
+			 })
 }
-
-export default SignUp;

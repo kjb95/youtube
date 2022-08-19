@@ -16,8 +16,13 @@
   "passwordInput": "Enter Your Password",
   "signUp": "Sign Up",
   "confirmPassword": "Confirm Password",
+  "confirmPasswordInput": "Enter Your Password Again",
   "nickname": "Nickname",
   "nicknameInput": "Enter Your Nickname",
   "createAccount": "Create Account",
-  "goToLoginPage": "Go To Login Page"
+  "goToLoginPage": "Go To Login Page",
+  "invalidInput": "Enter 8 To 20 Characters Including Only English Letters And Numbers",
+  "differentPassword": "Enter The Same Password",
+  "overlapID": "Same ID Exists",
+  "signUpSuccess": "Congratulations On Becoming A Member.\nLog In With Your Registered ID."
 }

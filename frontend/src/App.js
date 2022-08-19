@@ -11,8 +11,8 @@ import Index from "./pages/index";
 import VideoPlay from "./pages/video_play";
 import {useTranslation} from "react-i18next";
 import Navigation from "./components/navigation/navigation.jsx";
-import Login from "./components/login/login.jsx";
-import SignUp from "./components/login/sign_up";
+import Login from "./pages/login.jsx";
+import SignUp from "./pages/sign_up.jsx";
 
 function App() {
   const [language, setLanguage] = useState(null);

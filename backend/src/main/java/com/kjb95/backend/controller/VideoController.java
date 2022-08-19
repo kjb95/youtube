@@ -52,7 +52,7 @@ public class VideoController {
             log.error(unsupportedLanguages);
             return null;
         }
-        return this.videoService.getVideo(lang);
+        return videoService.getVideo(lang);
     }
     @PostMapping()
     public void addVideo(@Validated @RequestBody AddVideoDto addVideoDto, BindingResult bindingResult) {
@@ -77,6 +77,6 @@ public class VideoController {
             log.error(unsupportedLanguages);
             return null;
         }
-        return this.videoService.getRandomVideo(lang);
+        return videoService.getRandomVideo(lang);
     }
 }

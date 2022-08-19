@@ -16,6 +16,7 @@ export const LoginBox = styled.div`
           background-repeat: no-repeat;
           background-size:cover;
           padding:0;
+          white-space: nowrap;
       }
       #login{
           width:600px;
@@ -26,7 +27,6 @@ export const LoginBox = styled.div`
           border-radius: 10px;
           padding:50px;
           background: #fff;
-          text-align: center;
           position: absolute;
           top:50%;
           left:50%;
@@ -103,6 +103,7 @@ export const SignUpBox = styled.div`
           background-repeat: no-repeat;
           background-size:cover;
           padding:0;
+          white-space: nowrap;
       }
       #login{
           width:600px;
@@ -113,7 +114,6 @@ export const SignUpBox = styled.div`
           border-radius: 10px;
           padding:30px 50px;
           background: #fff;
-          text-align: center;
           position: absolute;
           top:50%;
           left:50%;
@@ -178,10 +178,15 @@ export const SignUpBox = styled.div`
       .num2{
           width:235px;
       }
+      .invalidInput{
+        font-size: small;
+        color: red;
+      }
 `
 
 export const LoginTitleH3 = styled.h3`
   letter-spacing:-1px;
+  text-align: center;
 `
 export const GoogleLoginInput = styled.input`
   background-color:#217Af0;
