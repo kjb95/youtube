@@ -1,5 +1,7 @@
 package com.kjb95.backend.dto;
 
+import com.kjb95.backend.entity.Video;
+import java.time.LocalDateTime;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AddVideoDto {
+public class CreateVideoDto {
 
     @NotNull(message = "아이디는 필수 입력값 입니다.")
     private String id;
@@ -32,4 +34,31 @@ public class AddVideoDto {
     private long viewCount;
     @Min(value = 0, message = "구독자 수는 0 이상 이어야 합니다.")
     private Long subscriberCount;
+
+    /**
+     * createVideoDto를 Video로 변환
+     *
+     * @return 변환된 Video
+     */
+    public Video toVideo() {
+        String publishedAtStr = publishedAt;
+        publishedAtStr = publishedAtStr.substring(0, publishedAtStr.length() - 1);
+        LocalDateTime publishedAt = LocalDateTime.parse(publishedAtStr);
+
+        Video video = Video.builder()
+            .id(id)
+            .channelId(channelId)
+            .channelTitle(channelTitle)
+            .description(description)
+            .title(title)
+            .publishedAt(publishedAt)
+            .viewCount(viewCount)
+            .isExist(true)
+            .build();
+        if (subscriberCount == null)
+            video.setSubscriberCount(-1);
+        else
+            video.setSubscriberCount(subscriberCount);
+        return video;
+    }
 }

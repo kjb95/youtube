@@ -10,12 +10,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Builder
-public class AddUserResponseDto {
+public class CreateUserResponseDto {
 
     private boolean isSuccess;
     private List<String> errorMessageList;
 
-    public AddUserResponseDto() {
+    public CreateUserResponseDto() {
         isSuccess = true;
         errorMessageList = null;
     }

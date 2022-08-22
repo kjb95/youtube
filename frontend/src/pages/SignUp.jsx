@@ -1,7 +1,7 @@
 import {LoginInformationP, LoginTitleH3, SignUpBox} from '../style/styledComponent/login.jsx';
 import {useTranslation} from 'react-i18next';
 import {useEffect, useState} from 'react';
-import {createAccount} from '../service/videPlay/signUp.jsx';
+import {createAccount} from '../service/login/signUp.jsx';
 import SignUpErrorMessageList from '../components/login/SignUpErrorMessageList.jsx';
 
 function SignUp() {

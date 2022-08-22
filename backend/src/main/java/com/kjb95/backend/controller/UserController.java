@@ -1,7 +1,7 @@
 package com.kjb95.backend.controller;
 
-import com.kjb95.backend.dto.AddUserDto;
-import com.kjb95.backend.dto.AddUserResponseDto;
+import com.kjb95.backend.dto.CreateUserDto;
+import com.kjb95.backend.dto.CreateUserResponseDto;
 import com.kjb95.backend.service.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,11 +27,11 @@ public class UserController {
     /**
      * 회원가입
      *
-     * @param addUserDto 회원가입할 유저 정보
+     * @param createUserDto 회원가입할 유저 정보
      * @return 회원가입 성공 혹은 실패 정보가 담긴 데이터
      */
     @PostMapping
-    public AddUserResponseDto addUser(@Validated @RequestBody AddUserDto addUserDto, BindingResult bindingResult) {
+    public CreateUserResponseDto createUser(@Validated @RequestBody CreateUserDto createUserDto, BindingResult bindingResult) {
         log.info("Post /api/users");
         if (bindingResult.hasErrors()) {
             log.error("errors={}", bindingResult.getAllErrors());
@@ -39,12 +39,12 @@ public class UserController {
                 .stream()
                 .map(s -> s.getDefaultMessage())
                 .collect(Collectors.toList());
-            AddUserResponseDto addUserResponseDto = AddUserResponseDto.builder()
+            CreateUserResponseDto createUserResponseDto = CreateUserResponseDto.builder()
                 .isSuccess(false)
                 .errorMessageList(errorMessageList)
                 .build();
-            return addUserResponseDto;
+            return createUserResponseDto;
         }
-        return userService.addUser(addUserDto);
+        return userService.createUser(createUserDto);
     }
 }

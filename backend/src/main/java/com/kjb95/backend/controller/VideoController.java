@@ -1,8 +1,8 @@
 package com.kjb95.backend.controller;
 
 import com.kjb95.backend.constant.Languages;
-import com.kjb95.backend.dto.AddVideoDto;
-import com.kjb95.backend.dto.AddVideoDtoList;
+import com.kjb95.backend.dto.CreateVideoDto;
+import com.kjb95.backend.dto.CreateVideoDtoList;
 import com.kjb95.backend.dto.VideoDto;
 import com.kjb95.backend.service.VideoService;
 import java.util.List;
@@ -39,17 +39,17 @@ public class VideoController {
     /**
      * 디비에 동영상 리스트 초기값 저장
      *
-     * @param addVideoDtoList 저장할 동영상 리스트
+     * @param createVideoDtoList 저장할 동영상 리스트
      */
     @PostMapping("/initial-value")
-    public void videoInitialValue(@Validated @RequestBody AddVideoDtoList addVideoDtoList, BindingResult bindingResult) {
+    public void initVideo(@Validated @RequestBody CreateVideoDtoList createVideoDtoList, BindingResult bindingResult) {
         log.info("Post /api/video/initial-value");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
             return;
         }
-        addVideoDtoList.getAddVideoDtoList()
-            .forEach(videoService::addVideo);
+        createVideoDtoList.getCreateVideoDtoList()
+            .forEach(videoService::createVideo);
     }
 
     /**
@@ -59,29 +59,29 @@ public class VideoController {
      * @return 동영상 리스트
      */
     @GetMapping()
-    public List<VideoDto> getVideo(@RequestParam("lang") String lang) {
+    public List<VideoDto> findAllVideo(@RequestParam("lang") String lang) {
         log.info("Get /api/video");
         if (!languages.getLanguages()
             .contains(lang)) {
             log.error(unsupportedLanguages);
             return null;
         }
-        return videoService.getVideo(lang);
+        return videoService.findAllVideo(lang);
     }
 
     /**
      * 동영상 추가
      *
-     * @param addVideoDto 추가할 동영상
+     * @param createVideoDto 추가할 동영상
      */
     @PostMapping()
-    public void addVideo(@Validated @RequestBody AddVideoDto addVideoDto, BindingResult bindingResult) {
+    public void createVideo(@Validated @RequestBody CreateVideoDto createVideoDto, BindingResult bindingResult) {
         log.info("Post /api/video");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
             return;
         }
-        videoService.addVideo(addVideoDto);
+        videoService.createVideo(createVideoDto);
     }
 
     /**
@@ -90,9 +90,9 @@ public class VideoController {
      * @param videoIds 삭제할 동영상 아이디들이 담긴 map
      */
     @DeleteMapping()
-    public void deleteVideo(@RequestBody Map<String, Boolean> videoIds) {
+    public void deleteVideoByIdList(@RequestBody Map<String, Boolean> videoIds) {
         log.info("Delete /api/video");
-        videoService.deleteVideo(videoIds);
+        videoService.deleteVideoByIdList(videoIds);
     }
 
     /**
@@ -102,13 +102,13 @@ public class VideoController {
      * @return 랜덤으로 섞은 동영상 리스트
      */
     @GetMapping("/random-value")
-    public List<VideoDto> getRandomVideo(@RequestParam("lang") String lang) {
+    public List<VideoDto> findRandomVideo(@RequestParam("lang") String lang) {
         log.info("Get /api/video/random-value");
         if (!languages.getLanguages()
             .contains(lang)) {
             log.error(unsupportedLanguages);
             return null;
         }
-        return videoService.getRandomVideo(lang);
+        return videoService.findRandomVideo(lang);
     }
 }

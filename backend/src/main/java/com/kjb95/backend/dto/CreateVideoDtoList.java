@@ -12,9 +12,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddVideoDtoList {
+public class CreateVideoDtoList {
 
     @NotNull
     @Valid
-    private List<AddVideoDto> addVideoDtoList;
+    private List<CreateVideoDto> createVideoDtoList;
 }

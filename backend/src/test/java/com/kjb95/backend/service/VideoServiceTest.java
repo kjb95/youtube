@@ -2,7 +2,7 @@ package com.kjb95.backend.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.kjb95.backend.dto.AddVideoDto;
+import com.kjb95.backend.dto.CreateVideoDto;
 import com.kjb95.backend.entity.Video;
 import com.kjb95.backend.repository.VideoRepository;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ class VideoServiceTest {
     VideoService videoService;
     @Autowired
     VideoRepository videoRepository;
-    AddVideoDto videoWithoutSubscriberCount;
+    CreateVideoDto videoWithoutSubscriberCount;
 
     @BeforeEach
     public void beforeEach() {
@@ -31,7 +31,7 @@ class VideoServiceTest {
             videoRepository.delete(video);
         }
 
-        videoWithoutSubscriberCount = AddVideoDto.builder()
+        videoWithoutSubscriberCount = CreateVideoDto.builder()
             .id("EVDWHCOlbOw")
             .channelId("UCEEGx5rpyzmcukyZmqr-MnA")
             .channelTitle("알앤비박사장")
@@ -43,8 +43,8 @@ class VideoServiceTest {
 
     @Test
     @DisplayName("구독자수 비공개면 구독자 수는 0명 이하")
-    public void addVideo() {
-        videoService.addVideo(videoWithoutSubscriberCount);
+    public void createVideo() {
+        videoService.createVideo(videoWithoutSubscriberCount);
         Video video = videoRepository.findById(videoWithoutSubscriberCount.getId());
         assertThat(video.getSubscriberCount()).isLessThan(0);
     }
@@ -52,14 +52,14 @@ class VideoServiceTest {
     @Test
     @DisplayName("플레이리스트 삭제")
     public void deleteVideo() {
-        videoService.addVideo(videoWithoutSubscriberCount);
+        videoService.createVideo(videoWithoutSubscriberCount);
         String id = videoWithoutSubscriberCount.getId();
         Video video = videoRepository.findById(id);
         assertThat(video.isExist()).isEqualTo(true);
 
         Map<String, Boolean> videoIds = new HashMap<>();
         videoIds.put(id, true);
-        videoService.deleteVideo(videoIds);
+        videoService.deleteVideoByIdList(videoIds);
         video = videoRepository.findById(id);
         assertThat(video.isExist()).isEqualTo(false);
     }

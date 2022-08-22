@@ -14,15 +14,15 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @WebAppConfiguration
 @SpringBootTest
-public class addVideoDtoListTest {
+public class createVideoDtoListTest {
 
     @Test
-    @DisplayName("AddVideoDtoList @Validated 유효성 검사")
-    public void addVideoDtoList() {
+    @DisplayName("CreateVideoDtoList @Validated 유효성 검사")
+    public void createVideoDtoList() {
         Validator validator = Validation.buildDefaultValidatorFactory()
             .getValidator();
 
-        AddVideoDto addVideoDto = AddVideoDto.builder()
+        CreateVideoDto createVideoDto = CreateVideoDto.builder()
             .id("EVDWHCOlbOw")
             .channelId("UCEEGx5rpyzmcukyZmqr-MnA")
             .channelTitle("알앤비박사장")
@@ -33,15 +33,15 @@ public class addVideoDtoListTest {
             .subscriberCount(Long.valueOf(123456))
             .build();
 
-        List<AddVideoDto> addVideoDtoList = new ArrayList<>();
-        addVideoDtoList.add(addVideoDto);
-        AddVideoDtoList list = new AddVideoDtoList(addVideoDtoList);
+        List<CreateVideoDto> createVideoDtoList = new ArrayList<>();
+        createVideoDtoList.add(createVideoDto);
+        CreateVideoDtoList list = new CreateVideoDtoList(createVideoDtoList);
 
-        Set<ConstraintViolation<AddVideoDtoList>> validate = validator.validate(list);
-        Iterator<ConstraintViolation<AddVideoDtoList>> iterator = validate.iterator();
+        Set<ConstraintViolation<CreateVideoDtoList>> validate = validator.validate(list);
+        Iterator<ConstraintViolation<CreateVideoDtoList>> iterator = validate.iterator();
         List<String> messages = new ArrayList<>();
         while (iterator.hasNext()) {
-            ConstraintViolation<AddVideoDtoList> next = iterator.next();
+            ConstraintViolation<CreateVideoDtoList> next = iterator.next();
             messages.add(next.getMessage());
         }
         org.assertj.core.api.Assertions.assertThat(messages)
