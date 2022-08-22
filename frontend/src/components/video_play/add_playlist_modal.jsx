@@ -24,7 +24,9 @@ const AddPlaylistModal = ({
 		<input type='submit' value={t('submit')} onClick={() => {
 			addPlaylist(id, setAddPlaylistModal, setId);
 		}} />
-		<button onClick={() => { closeModal(setAddPlaylistModal, setId); }}>{t('close')}</button>
+		<button onClick={() => {
+			closeModal(setAddPlaylistModal, setId);
+		}}>{t('close')}</button>
 	</AddPlaylistButtonsSection> </Modal>);
 };
 

@@ -22,8 +22,15 @@ public class UserService {
     @Value("${overlap-id}")
     private String overlapID;
 
+    /**
+     * 회원가입
+     *
+     * @param addUserDto 회원가입할 유저 정보
+     * @return 회원가입 성공 혹은 실패 정보가 담긴 데이터
+     */
     public AddUserResponseDto addUser(AddUserDto addUserDto) {
-        if (userRepository.findById(addUserDto.getId()).orElse(null) != null) {
+        if (userRepository.findById(addUserDto.getId())
+            .orElse(null) != null) {
             List<String> errorMessageList = List.of(overlapID);
             log.error("errors={}", overlapID);
             AddUserResponseDto addUserResponseDto = AddUserResponseDto.builder()

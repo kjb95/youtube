@@ -36,30 +36,46 @@ public class VideoController {
     @Value("${unsupported-languages}")
     private String unsupportedLanguages;
 
+    /**
+     * 디비에 동영상 리스트 초기값 저장
+     *
+     * @param addVideoDtoList 저장할 동영상 리스트
+     */
     @PostMapping("/initial-value")
-    public void videoInitialValue(@Validated @RequestBody AddVideoDtoList addVideoDtoList,
-        BindingResult bindingResult) {
+    public void videoInitialValue(@Validated @RequestBody AddVideoDtoList addVideoDtoList, BindingResult bindingResult) {
         log.info("Post /api/video/initial-value");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
             return;
         }
-        addVideoDtoList.getAddVideoDtoList().forEach(videoService::addVideo);
+        addVideoDtoList.getAddVideoDtoList()
+            .forEach(videoService::addVideo);
     }
 
+    /**
+     * 동영상 리스트 조회
+     *
+     * @param lang 다국어 설정값
+     * @return 동영상 리스트
+     */
     @GetMapping()
     public List<VideoDto> getVideo(@RequestParam("lang") String lang) {
         log.info("Get /api/video");
-        if (!languages.getLanguages().contains(lang)) {
+        if (!languages.getLanguages()
+            .contains(lang)) {
             log.error(unsupportedLanguages);
             return null;
         }
         return videoService.getVideo(lang);
     }
 
+    /**
+     * 동영상 추가
+     *
+     * @param addVideoDto 추가할 동영상
+     */
     @PostMapping()
-    public void addVideo(@Validated @RequestBody AddVideoDto addVideoDto,
-        BindingResult bindingResult) {
+    public void addVideo(@Validated @RequestBody AddVideoDto addVideoDto, BindingResult bindingResult) {
         log.info("Post /api/video");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
@@ -68,17 +84,28 @@ public class VideoController {
         videoService.addVideo(addVideoDto);
     }
 
+    /**
+     * 동영상 삭제
+     *
+     * @param videoIds 삭제할 동영상 아이디들이 담긴 map
+     */
     @DeleteMapping()
-    public boolean deleteVideo(@RequestBody Map<String, Boolean> videoIds) {
+    public void deleteVideo(@RequestBody Map<String, Boolean> videoIds) {
         log.info("Delete /api/video");
         videoService.deleteVideo(videoIds);
-        return true;
     }
 
+    /**
+     * 랜덤으로 동영상 리스트 조회
+     *
+     * @param lang 다국어 설정값
+     * @return 랜덤으로 섞은 동영상 리스트
+     */
     @GetMapping("/random-value")
     public List<VideoDto> getRandomVideo(@RequestParam("lang") String lang) {
         log.info("Get /api/video/random-value");
-        if (!languages.getLanguages().contains(lang)) {
+        if (!languages.getLanguages()
+            .contains(lang)) {
             log.error(unsupportedLanguages);
             return null;
         }

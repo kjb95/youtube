@@ -8,7 +8,9 @@ const RandomButton = ({
 }) => {
 	const isRandom = window.localStorage.getItem('isRandom');
 
-	return <PlaylistRandomButtonImg src='./img/randomButton.png' alt='randomButton' onClick={event => { randomPlay(event, playlistDataUpdate, setPlaylistUpdate); }} isRandom={isRandom} />
+	return <PlaylistRandomButtonImg src='./img/randomButton.png' alt='randomButton' onClick={event => {
+		randomPlay(event, playlistDataUpdate, setPlaylistUpdate);
+	}} isRandom={isRandom} />
 }
 
 export default RandomButton;

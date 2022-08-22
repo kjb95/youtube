@@ -16,7 +16,7 @@ const Index = () => {
 		const lang = localStorage.getItem('lang');
 		const langParameter = (lang === null) ? 'ko' : lang;
 		axios.get(`http://localhost:8080/api/video?lang=${langParameter}`)
-				 .then(res => setPlaylist(res.data));
+				.then(res => setPlaylist(res.data));
 	}, [t]);
 
 	if (!playlist) return "";

@@ -28,7 +28,7 @@ const VideoPlay = () => {
 	const [randomPlaylist, setRandomPlaylist] = useState(undefined);
 	const [addPlaylistModal, setAddPlaylistModal] = useState(false);
 	const [notice, setNotice] = useState(undefined);
-	const [checkboxs, setCheckboxs] = useState();
+	const [checkboxes, setCheckboxes] = useState();
 	const [noticeCookie, setNoticeCookie] = useState();
 	const [isNoticeClose, setIsNoticeClose] = useState();
 	const [currentPlaylist, setCurrentPlaylist] = useState(undefined);
@@ -50,9 +50,12 @@ const VideoPlay = () => {
 		const lang = localStorage.getItem('lang');
 		const langParameter = (lang === null) ? 'ko' : lang;
 
-		axios.get(`http://localhost:8080/api/video?lang=${langParameter}`).then(res => setSequentialPlaylist(res.data));
-		axios.get(`http://localhost:8080/api/video/random-value?lang=${langParameter}`).then(res => setRandomPlaylist(res.data));
-		fetchNotice().then((data) => setNotice(data));
+		axios.get(`http://localhost:8080/api/video?lang=${langParameter}`)
+				.then(res => setSequentialPlaylist(res.data));
+		axios.get(`http://localhost:8080/api/video/random-value?lang=${langParameter}`)
+				.then(res => setRandomPlaylist(res.data));
+		fetchNotice()
+				.then((data) => setNotice(data));
 
 		const isRandom = localStorage.getItem('isRandom');
 		if (isRandom === 'true') setRandom(true); else setRandom(false);
@@ -69,13 +72,13 @@ const VideoPlay = () => {
 	return (<>
 		<aside>
 			<PlaylistsSection> <Playlist checkboxChange={(event) => {
-				checkboxChange(event, checkboxs, setCheckboxs);
+				checkboxChange(event, checkboxes, setCheckboxes);
 			}} sequentialPlaylist={sequentialPlaylist} randomPlaylist={randomPlaylist} />
 			</PlaylistsSection> <PlaylistModifyButtonsSection>
 			<input type='hidden' id='isRandom' value='false' />
 			<RandomButton playlistDataUpdate={playlistDataUpdate} setPlaylistUpdate={setPlaylistUpdate} />
 			<AddButton setAddPlaylistModal={setAddPlaylistModal} />
-			<DeleteButton checkboxs={checkboxs} playlistDataUpdate={playlistDataUpdate} setPlaylistUpdate={setPlaylistUpdate} />
+			<DeleteButton checkboxes={checkboxes} playlistDataUpdate={playlistDataUpdate} setPlaylistUpdate={setPlaylistUpdate} />
 		</PlaylistModifyButtonsSection>
 		</aside>
 

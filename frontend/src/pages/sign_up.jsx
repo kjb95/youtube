@@ -1,7 +1,7 @@
 import {LoginInformationP, LoginTitleH3, SignUpBox} from "../style/styled_component/login.jsx";
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
-import {createAccount} from "../components/login/sign_up.jsx";
+import {createAccount} from "../service/vide_play/sign_up.jsx";
 import SignUpErrorMessageList from "../components/login/sign_up_error_message_list";
 
 function SignUp() {
@@ -56,7 +56,9 @@ function SignUp() {
 					<br />
 					<div>
 						{validateId && validatePassword && validateConfirmPassword && validateNickname &&
-								<input type='button' value={t('createAccount')} className='btn' onClick={() => {createAccount(id, password, nickname, setValidateSignUp, t('signUpSuccess'))}} />} {validateSignUp &&
+								<input type='button' value={t('createAccount')} className='btn' onClick={() => {
+									createAccount(id, password, nickname, setValidateSignUp, t('signUpSuccess'))
+								}} />} {validateSignUp &&
 							<SignUpErrorMessageList validateSignUp={validateSignUp} />}
 					</div>
 					<hr />
