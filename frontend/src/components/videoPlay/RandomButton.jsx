@@ -1,6 +1,6 @@
 import React from 'react';
-import {PlaylistRandomButtonImg} from '../../style/styled_component/video_play';
-import {randomPlay} from '../../service/vide_play/random_button';
+import {PlaylistRandomButtonImg} from '../../style/styled_component/videoPlay.jsx';
+import {randomPlay} from '../../service/videPlay/randomButton.jsx';
 
 const RandomButton = ({
 	playlistDataUpdate,

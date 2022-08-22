@@ -1,8 +1,8 @@
 import React from "react";
-import SelectLanguage from "./select_language.jsx";
+import SelectLanguage from "./SelectLanguage.jsx";
 import {NavigationBox, NavigationLeftBox, NavigationRightBox} from "../../style/styled_component/navigation";
-import Home from "./home.jsx";
-import LoginButton from "./login_button.jsx";
+import Home from "./Home.jsx";
+import LoginButton from "./LoginButton.jsx";
 
 function Navigation({
 	language,

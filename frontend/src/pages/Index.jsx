@@ -5,7 +5,7 @@ import {useTranslation} from "react-i18next";
 import "../style/css/common.css";
 
 import {IndexVideoMain} from "../style/styled_component/index";
-import IndexVideoElement from "../components/index/index_video_element";
+import IndexVideoElement from "../components/index/IndexVideoElement.jsx";
 
 const Index = () => {
 	const [playlist, setPlaylist] = useState(undefined);

@@ -1,6 +1,6 @@
 import React from "react";
 
-import PlaylistElement from './playlist_element';
+import PlaylistElement from './PlaylistElement.jsx';
 
 const Playlist = ({
 	checkboxChange,

@@ -1,5 +1,5 @@
 import React from "react";
-import {NoticeCloseButtonImg, NoticeDoNotSeeTodayInput, NoticeImg,} from "../../style/styled_component/video_play";
+import {NoticeCloseButtonImg, NoticeDoNotSeeTodayInput, NoticeImg,} from "../../style/styled_component/videoPlay.jsx";
 import {useTranslation} from "react-i18next";
 
 const NoticeElement = ({

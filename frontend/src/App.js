@@ -2,14 +2,14 @@ import React, {useEffect, useState} from "react";
 import "./App.css";
 
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {HidePlaylistBox, ShowPlaylistBox,} from "./style/styled_component/video_play";
+import {HidePlaylistBox, ShowPlaylistBox,} from "./style/styled_component/videoPlay.jsx";
 
-import Index from "./pages/index";
-import VideoPlay from "./pages/video_play";
+import Index from "./pages/Index.jsx";
+import VideoPlay from "./pages/VideoPlay.jsx";
 import {useTranslation} from "react-i18next";
-import Navigation from "./components/navigation/navigation.jsx";
-import Login from "./pages/login.jsx";
-import SignUp from "./pages/sign_up.jsx";
+import Navigation from "./components/navigation/Navigation.jsx";
+import Login from "./pages/Login.jsx";
+import SignUp from "./pages/SignUp.jsx";
 
 function App() {
 	const [language, setLanguage] = useState(null);

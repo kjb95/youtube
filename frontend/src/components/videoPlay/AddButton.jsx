@@ -1,6 +1,6 @@
 import React from "react";
-import {PlaylistModifyButtonImg} from "../../style/styled_component/video_play";
-import {openAddPlaylistModal} from '../../service/vide_play/add_button'
+import {PlaylistModifyButtonImg} from "../../style/styled_component/videoPlay.jsx";
+import {openAddPlaylistModal} from '../../service/videPlay/addButton.jsx'
 
 const AddButton = ({setAddPlaylistModal}) => {
 	return <PlaylistModifyButtonImg src='./img/addButton.png' alt='addButton' onClick={() => openAddPlaylistModal(setAddPlaylistModal)} />

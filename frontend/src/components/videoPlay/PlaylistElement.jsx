@@ -1,5 +1,5 @@
 import React from "react";
-import {PlaylistAnchorBox, PlaylistBox, PlaylistVideoImg,} from "../../style/styled_component/video_play";
+import {PlaylistAnchorBox, PlaylistBox, PlaylistVideoImg,} from "../../style/styled_component/videoPlay.jsx";
 import {PlaylistInformationBox, PlaylistTitleBox, PlaylistYoutuberBox,} from "../../style/styled_component/index";
 
 const PlaylistElement = ({

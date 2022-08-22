@@ -1,6 +1,6 @@
 import React from "react";
-import {PlaylistModifyButtonImg} from '../../style/styled_component/video_play';
-import {deletePlayList} from '../../service/vide_play/delete_button';
+import {PlaylistModifyButtonImg} from '../../style/styled_component/videoPlay.jsx';
+import {deletePlayList} from '../../service/videPlay/deleteButton.jsx';
 
 const DeleteButton = ({
 	checkboxes,

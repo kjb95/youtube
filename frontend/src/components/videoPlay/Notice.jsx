@@ -1,5 +1,5 @@
 import React from "react";
-import NoticeElement from './notice_element';
+import NoticeElement from './NoticeElement.jsx';
 
 import {getCookie} from '../../service/common.js';
 

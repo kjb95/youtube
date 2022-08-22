@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Modal from "react-modal";
-import {AddPlaylistButtonsSection, AddPlaylistFormBox,} from "../../style/styled_component/video_play";
-import {addPlaylist, closeModal, inputChange} from '../../service/vide_play/add_playlist_modal';
+import {AddPlaylistButtonsSection, AddPlaylistFormBox,} from "../../style/styled_component/videoPlay.jsx";
+import {addPlaylist, closeModal, inputChange} from '../../service/videPlay/addPlaylistModal.jsx';
 import {useTranslation} from "react-i18next";
 
 const AddPlaylistModal = ({

@@ -6,17 +6,17 @@ import axios from 'axios';
 import {useTranslation} from "react-i18next";
 
 import {fetchNotice, setPlaylist,} from "../service/common.js";
-import {briefly, checkboxChange, clickDoNotSeeToday, goNextPlaylist, isNoticeAllClose, noticeClose, viewMore,} from "../service/vide_play/video_play";
+import {briefly, checkboxChange, clickDoNotSeeToday, goNextPlaylist, isNoticeAllClose, noticeClose, viewMore,} from "../service/videPlay/videoPlay.jsx";
 
-import Playlist from "../components/video_play/playlist";
-import RandomButton from "../components/video_play/random_button";
-import AddButton from "../components/video_play/add_button";
-import AddPlaylistModal from "../components/video_play/add_playlist_modal";
-import DeleteButton from "../components/video_play/delete_button";
-import Notice from "../components/video_play/notice";
+import Playlist from "../components/videoPlay/Playlist.jsx";
+import RandomButton from "../components/videoPlay/RandomButton.jsx";
+import AddButton from "../components/videoPlay/AddButton.jsx";
+import AddPlaylistModal from "../components/videoPlay/AddPlaylistModal.jsx";
+import DeleteButton from "../components/videoPlay/DeleteButton.jsx";
+import Notice from "../components/videoPlay/Notice.jsx";
 
 import "../style/css/common.css";
-import {NoticeBox, PlayingVideoDescriptionBox, PlayingVideoDescriptionBriefly, PlayingVideoDiscriptionSection1, PlayingVideoDiscriptionSection2, PlayingVideoDiscriptionSection3, PlayingVideoDiscriptionViewMore, PlayingVideoInformationBox, PlayingVideoMain, PlayingVideoSubscriberBox, PlayingVideoTitleBox, PlayingVideoYoutuberBox, PlayingYoutubePlayerSection, PlaylistModifyButtonsSection, PlaylistsSection,} from "../style/styled_component/video_play";
+import {NoticeBox, PlayingVideoDescriptionBox, PlayingVideoDescriptionBriefly, PlayingVideoDiscriptionSection1, PlayingVideoDiscriptionSection2, PlayingVideoDiscriptionSection3, PlayingVideoDiscriptionViewMore, PlayingVideoInformationBox, PlayingVideoMain, PlayingVideoSubscriberBox, PlayingVideoTitleBox, PlayingVideoYoutuberBox, PlayingYoutubePlayerSection, PlaylistModifyButtonsSection, PlaylistsSection,} from "../style/styled_component/videoPlay.jsx";
 
 const VideoPlay = () => {
 	// window.localStorage.clear();
