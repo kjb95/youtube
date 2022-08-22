@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import {getYoutubeData} from "./common.js";
+import {getYoutubeData} from './common.js';
 import dotenv from 'dotenv';
 import axios from 'axios';
 
-dotenv.config({path: "../../.env"});
+dotenv.config({path: '../../.env'});
 
 /**
  * frontend 루트 폴더에서 npm run init 명령어를 입력하면 init() 실행됨
@@ -14,21 +14,23 @@ dotenv.config({path: "../../.env"});
 const init = async () => {
 	const __filename = fileURLToPath(import.meta.url);  // 경로가 포함된 햔재 파일 이름
 	const __dirname = path.dirname(__filename); // 현재 파일의 경로
-	const filePath = path.join(__dirname, "../../public/json/playlist.json");  // 찾으려는 파일의 경로
+	const filePath = path.join(__dirname, '../../public/json/playlist.json');  // 찾으려는 파일의 경로
 	const jsonFile = fs.readFileSync(filePath);
 	const jsonData = JSON.parse(jsonFile);
-	let playlist = {
+	const playlist = {
 		addPlaylistDtoList: []
 	};
 
-	for (let i = 0; i < jsonData.playlist.length; i++) playlist.addPlaylistDtoList.push(await getYoutubeData(jsonData.playlist[i].id));
+	for (let i = 0; i < jsonData.playlist.length; i++) {
+		playlist.addPlaylistDtoList.push(await getYoutubeData(jsonData.playlist[i].id));
+	}
 	axios.post('http://localhost:8080/api/video/initial-value', playlist)
 			.then(res => {
 				console.log('res : ', res);
 			})
-			.catch(function (err) {
+			.catch((err) => {
 				console.log('err : ', err);
-			})
-}
+			});
+};
 
 init();

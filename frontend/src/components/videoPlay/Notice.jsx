@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import NoticeElement from './NoticeElement.jsx';
 
 import {getCookie} from '../../service/common.js';
@@ -10,13 +10,17 @@ const Notice = ({
 	clickDoNotSeeToday
 }) => {
 	return notice.map((data, index) => {
-		if (isNoticeClose && isNoticeClose[index]) return '';
-		if (getCookie(index) !== '') return '';
+		if (isNoticeClose && isNoticeClose[index]) {
+			return '';
+		}
+		if (getCookie(index) !== '') {
+			return '';
+		}
 
 		return <li key={index}>
 			<NoticeElement title={data.title} text={data.text} img={data.img} name={index} noticeClose={noticeClose} clickDoNotSeeToday={clickDoNotSeeToday} />
-		</li>
-	})
-}
+		</li>;
+	});
+};
 
 export default Notice;

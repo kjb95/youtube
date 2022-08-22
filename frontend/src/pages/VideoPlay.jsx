@@ -1,28 +1,28 @@
-import React, {useEffect, useRef, useState} from "react";
-import {useLocation} from "react-router";
-import ReactPlayer from "react-player";
-import qs from "qs";
+import React, {useEffect, useRef, useState} from 'react';
+import {useLocation} from 'react-router';
+import ReactPlayer from 'react-player';
+import qs from 'qs';
 import axios from 'axios';
-import {useTranslation} from "react-i18next";
+import {useTranslation} from 'react-i18next';
 
-import {fetchNotice, setPlaylist,} from "../service/common.js";
-import {briefly, checkboxChange, clickDoNotSeeToday, goNextPlaylist, isNoticeAllClose, noticeClose, viewMore,} from "../service/videPlay/videoPlay.jsx";
+import {fetchNotice, setPlaylist} from '../service/common.js';
+import {briefly, checkboxChange, clickDoNotSeeToday, goNextPlaylist, isNoticeAllClose, noticeClose, viewMore} from '../service/videPlay/videoPlay.jsx';
 
-import Playlist from "../components/videoPlay/Playlist.jsx";
-import RandomButton from "../components/videoPlay/RandomButton.jsx";
-import AddButton from "../components/videoPlay/AddButton.jsx";
-import AddPlaylistModal from "../components/videoPlay/AddPlaylistModal.jsx";
-import DeleteButton from "../components/videoPlay/DeleteButton.jsx";
-import Notice from "../components/videoPlay/Notice.jsx";
+import Playlist from '../components/videoPlay/Playlist.jsx';
+import RandomButton from '../components/videoPlay/RandomButton.jsx';
+import AddButton from '../components/videoPlay/AddButton.jsx';
+import AddPlaylistModal from '../components/videoPlay/AddPlaylistModal.jsx';
+import DeleteButton from '../components/videoPlay/DeleteButton.jsx';
+import Notice from '../components/videoPlay/Notice.jsx';
 
-import "../style/css/common.css";
-import {NoticeBox, PlayingVideoDescriptionBox, PlayingVideoDescriptionBriefly, PlayingVideoDiscriptionSection1, PlayingVideoDiscriptionSection2, PlayingVideoDiscriptionSection3, PlayingVideoDiscriptionViewMore, PlayingVideoInformationBox, PlayingVideoMain, PlayingVideoSubscriberBox, PlayingVideoTitleBox, PlayingVideoYoutuberBox, PlayingYoutubePlayerSection, PlaylistModifyButtonsSection, PlaylistsSection,} from "../style/styled_component/videoPlay.jsx";
+import '../style/css/common.css';
+import {NoticeBox, PlayingVideoDescriptionBox, PlayingVideoDescriptionBriefly, PlayingVideoDiscriptionSection1, PlayingVideoDiscriptionSection2, PlayingVideoDiscriptionSection3, PlayingVideoDiscriptionViewMore, PlayingVideoInformationBox, PlayingVideoMain, PlayingVideoSubscriberBox, PlayingVideoTitleBox, PlayingVideoYoutuberBox, PlayingYoutubePlayerSection, PlaylistModifyButtonsSection, PlaylistsSection} from '../style/styledComponent/videoPlay.jsx';
 
 const VideoPlay = () => {
 	// window.localStorage.clear();
 	const location = useLocation();
 	const query = qs.parse(location.search, {ignoreQueryPrefix: true});
-	const youtbeURL = "https://www.youtube.com/watch?v=" + query.page;
+	const youtbeURL = 'https://www.youtube.com/watch?v=' + query.page;
 
 	const [sequentialPlaylist, setSequentialPlaylist] = useState(undefined);
 	const [randomPlaylist, setRandomPlaylist] = useState(undefined);
@@ -48,7 +48,7 @@ const VideoPlay = () => {
 	useEffect(() => {
 		//  window.localStorage.clear();
 		const lang = localStorage.getItem('lang');
-		const langParameter = (lang === null) ? 'ko' : lang;
+		const langParameter = lang ?? 'ko';
 
 		axios.get(`http://localhost:8080/api/video?lang=${langParameter}`)
 				.then(res => setSequentialPlaylist(res.data));
@@ -58,16 +58,30 @@ const VideoPlay = () => {
 				.then((data) => setNotice(data));
 
 		const isRandom = localStorage.getItem('isRandom');
-		if (isRandom === 'true') setRandom(true); else setRandom(false);
+		if (isRandom === 'true') {
+			setRandom(true);
+		}
+		else {
+			setRandom(false);
+		}
 	}, [addPlaylistModal, playlistDataUpdate, i18n, t]);
 
 	useEffect(() => {
-		if (!sequentialPlaylist || !randomPlaylist) return;
-		if (random) setPlaylist(sequentialPlaylist, query.page, setCurrentPlaylist, setNextPlaylist); else setPlaylist(randomPlaylist, query.page, setCurrentPlaylist, setNextPlaylist);
+		if (!sequentialPlaylist || !randomPlaylist) {
+			return;
+		}
+		if (random) {
+			setPlaylist(sequentialPlaylist, query.page, setCurrentPlaylist, setNextPlaylist);
+		}
+		else {
+			setPlaylist(randomPlaylist, query.page, setCurrentPlaylist, setNextPlaylist);
+		}
 
-	}, [sequentialPlaylist, randomPlaylist, query.page, random])
+	}, [sequentialPlaylist, randomPlaylist, query.page, random]);
 
-	if (!sequentialPlaylist || !randomPlaylist || !notice || !currentPlaylist) return "";
+	if (!sequentialPlaylist || !randomPlaylist || !notice || !currentPlaylist) {
+		return '';
+	}
 
 	return (<>
 		<aside>

@@ -23,7 +23,7 @@ export const setPlaylist = (playlist, page, setCurrentPlaylist, setNextPlaylist)
 			findCurrentPlaylist = true;
 		}
 	}
-}
+};
 
 /**
  * notice.json 읽기
@@ -33,7 +33,7 @@ export const fetchNotice = async () => {
 	return await fetch('/json/notice.json')
 			.then((response) => response.json())
 			.then(data => data.notices);
-}
+};
 
 /**
  * 쿠키 생성 또는 수정
@@ -44,8 +44,8 @@ export const fetchNotice = async () => {
 export const setCookie = (name, value, expire) => {
 	const currentDay = new Date();
 	currentDay.setTime(currentDay.getTime() + expire);
-	document.cookie = name + "=" + value + "; expires=" + currentDay.toUTCString();
-}
+	document.cookie = name + '=' + value + '; expires=' + currentDay.toUTCString();
+};
 
 /**
  * 쿠키 name으로 value 조회
@@ -53,33 +53,37 @@ export const setCookie = (name, value, expire) => {
  * @return 쿠키의 이름에 매핑되는 쿠기 값
  */
 export const getCookie = (name) => {
-	if (document.cookie === "") return "";
+	if (document.cookie === '') {
+		return '';
+	}
 
-	const cookies = document.cookie.split(";");
+	const cookies = document.cookie.split(';');
 
 	for (let i in cookies) {
-		const key = (Number)(cookies[i].split("=")[0].trim());
-		const value = cookies[i].split("=")[1].trim();
-		if (key === name) return value;
+		const key = (Number)(cookies[i].split('=')[0].trim());
+		const value = cookies[i].split('=')[1].trim();
+		if (key === name) {
+			return value;
+		}
 	}
-	return "";
-}
+	return '';
+};
 
 /**
  * 유튜브 API 호출
  * @return 유튜브 API 호출로 얻은 데이터
  */
-async function callYoutubeAPI(type, part, id) {
+const callYoutubeAPI = async (type, part, id) => {
 	return await axios.get(`https://www.googleapis.com/youtube/v3/${type}?part=${part}&id=${id}&key=${process.env.REACT_APP_YOUTUBE_API}`)
 			.then(res => res.data.items[0]);
-}
+};
 
 /**
  * 유튜브 동영상 아이디로 유튜브 API를 호출하여 데이터 조회
  * @param id 조회할 유튜브 동영상 아이디
  * @return 유튜브 동영상 아이디로 얻은 데이터
  */
-export async function getYoutubeData(id) {
+export const getYoutubeData = async (id) => {
 	let data1 = await callYoutubeAPI('videos', 'snippet', id);
 	const data2 = await callYoutubeAPI('videos', 'statistics', id);
 	const data3 = await callYoutubeAPI('channels', 'statistics', data1.snippet.channelId);
@@ -94,32 +98,32 @@ export async function getYoutubeData(id) {
 		publishedAt: data1.publishedAt,
 		viewCount: data2.statistics.viewCount,
 		subscriberCount: data3.statistics.subscriberCount
-	}
-}
+	};
+};
 
 /**
  * public/json/playlist.json 에 저장된 동영상 아이디 리스트 조회
  * @return 조회할 동영상 아이디 리스트
  */
-async function fetchPlaylist() {
+const fetchPlaylist = async () => {
 	return await fetch('json/playlist.json')
 			.then((res) => res.json())
 			.then(data => data.playlist);
-}
+};
 
 /**
  * public/json/playlist.json 에 저장된 동영상 아이디 리스트로 유튜브 API 호출하여 동영상 리스트 조회
  * @return 유튜브 API를 호출하여 얻은 동영상 리스트
  */
-export async function getYoutubeDataList() {
-	let playlist = [];
+export const getYoutubeDataList = async () => {
+	const playlist = [];
 
 	await fetchPlaylist()
 			.then(data => {
 				data.forEach(data => {
 					playlist.push(getYoutubeData(data.id));
-				})
+				});
 			});
 
 	return await Promise.all(playlist);
-}
+};

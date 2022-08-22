@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const LoginBox = styled.div`
       body{
@@ -85,7 +85,7 @@ export const LoginBox = styled.div`
       .find a:hover{
           color:#707070;
       }
-`
+`;
 
 export const SignUpBox = styled.div`
       body{
@@ -182,20 +182,20 @@ export const SignUpBox = styled.div`
         font-size: small;
         color: red;
       }
-`
+`;
 
 export const LoginTitleH3 = styled.h3`
   letter-spacing:-1px;
   text-align: center;
-`
+`;
 export const GoogleLoginInput = styled.input`
   background-color:#217Af0;
-`
+`;
 export const LoginInput = styled.input`
   background-color:#df3278;
-`
+`;
 export const LoginInformationP = styled.p`
   text-align: left; 
   font-size:12px; 
   color:#666
-`
+`;

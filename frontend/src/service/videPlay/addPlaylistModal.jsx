@@ -1,4 +1,4 @@
-import {getYoutubeData} from "../common.js";
+import {getYoutubeData} from '../common.js';
 import axios from 'axios';
 
 /**
@@ -22,7 +22,7 @@ export const addPlaylist = (id, setAddPlaylistModal, setId) => {
 				axios.post('http://localhost:8080/api/video', playlist)
 						.then(() => {
 							setAddPlaylistModal(false);
-							setId("");
+							setId('');
 						});
 			});
 };
@@ -34,5 +34,5 @@ export const addPlaylist = (id, setAddPlaylistModal, setId) => {
  */
 export const closeModal = (setAddPlaylistModal, setId) => {
 	setAddPlaylistModal(false);
-	setId("");
+	setId('');
 };

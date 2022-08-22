@@ -16,4 +16,4 @@ export const randomPlay = (event, playlistDataUpdate, setPlaylistUpdate) => {
 		window.localStorage.setItem('isRandom', true);
 	}
 	setPlaylistUpdate(playlistDataUpdate + 1);
-}
+};

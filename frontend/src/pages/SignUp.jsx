@@ -1,8 +1,8 @@
-import {LoginInformationP, LoginTitleH3, SignUpBox} from "../style/styled_component/login.jsx";
-import {useTranslation} from "react-i18next";
-import {useEffect, useState} from "react";
-import {createAccount} from "../service/videPlay/signUp.jsx";
-import SignUpErrorMessageList from "../components/login/SignUpErrorMessageList.jsx";
+import {LoginInformationP, LoginTitleH3, SignUpBox} from '../style/styledComponent/login.jsx';
+import {useTranslation} from 'react-i18next';
+import {useEffect, useState} from 'react';
+import {createAccount} from '../service/videPlay/signUp.jsx';
+import SignUpErrorMessageList from '../components/login/SignUpErrorMessageList.jsx';
 
 function SignUp() {
 	const {t} = useTranslation();
@@ -21,12 +21,37 @@ function SignUp() {
 
 	useEffect(() => {
 		const regexp = /^[a-zA-Z0-9]{8,20}$/;
-		if (regexp.test(id)) setValidateId(true); else setValidateId(false);
-		if (regexp.test(password)) setValidatePassword(true); else setValidatePassword(false);
-		if (regexp.test(confirmPassword)) setValidateConfirmPassword(true); else setValidateConfirmPassword(false);
-		if (regexp.test(nickname)) setValidateNickname(true); else setValidateNickname(false);
-		if (password === confirmPassword) setIsSamePassword(true); else setIsSamePassword(false);
-	}, [id, password, confirmPassword, nickname, validateSignUp])
+		if (regexp.test(id)) {
+			setValidateId(true);
+		}
+		else {
+			setValidateId(false);
+		}
+		if (regexp.test(password)) {
+			setValidatePassword(true);
+		}
+		else {
+			setValidatePassword(false);
+		}
+		if (regexp.test(confirmPassword)) {
+			setValidateConfirmPassword(true);
+		}
+		else {
+			setValidateConfirmPassword(false);
+		}
+		if (regexp.test(nickname)) {
+			setValidateNickname(true);
+		}
+		else {
+			setValidateNickname(false);
+		}
+		if (password === confirmPassword) {
+			setIsSamePassword(true);
+		}
+		else {
+			setIsSamePassword(false);
+		}
+	}, [id, password, confirmPassword, nickname, validateSignUp]);
 
 	return <SignUpBox>
 		<div id='con'>
@@ -57,7 +82,7 @@ function SignUp() {
 					<div>
 						{validateId && validatePassword && validateConfirmPassword && validateNickname &&
 								<input type='button' value={t('createAccount')} className='btn' onClick={() => {
-									createAccount(id, password, nickname, setValidateSignUp, t('signUpSuccess'))
+									createAccount(id, password, nickname, setValidateSignUp, t('signUpSuccess'));
 								}} />} {validateSignUp &&
 							<SignUpErrorMessageList validateSignUp={validateSignUp} />}
 					</div>
@@ -68,7 +93,7 @@ function SignUp() {
 				</div>
 			</div>
 		</div>
-	</SignUpBox>
+	</SignUpBox>;
 }
 
 export default SignUp;

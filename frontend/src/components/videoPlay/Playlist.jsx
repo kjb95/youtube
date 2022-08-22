@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import PlaylistElement from './PlaylistElement.jsx';
 
@@ -7,25 +7,33 @@ const Playlist = ({
 	sequentialPlaylist,
 	randomPlaylist
 }) => {
-	let isRandom = window.localStorage.getItem("isRandom");
-	if (isRandom == null) window.localStorage.setItem("isRandom", false);
-	if (isRandom === "true") return loadPlaylist(randomPlaylist, checkboxChange);
+	const isRandom = window.localStorage.getItem('isRandom');
+	if (!isRandom) {
+		window.localStorage.setItem('isRandom', false);
+	}
+	if (isRandom === 'true') {
+		return loadPlaylist(randomPlaylist, checkboxChange);
+	}
 
 	return loadPlaylist(sequentialPlaylist, checkboxChange);
 };
 
 function loadPlaylist(data, checkboxChange) {
-	let url = new URL(window.location.href);
+	const url = new URL(window.location.href);
 
 	return data.map((playlistElement) => {
-		if (!playlistElement.exist) return "";
+		if (!playlistElement.exist) {
+			return '';
+		}
 
-		let playlistName = "playlist";
-		if (url.searchParams.get("page") === playlistElement.id) playlistName = "current_playlist";
+		let playlistName = 'playlist';
+		if (url.searchParams.get('page') === playlistElement.id) {
+			playlistName = 'current_playlist';
+		}
 
 		return <li key={playlistElement.id}>
 			<PlaylistElement playlistName={playlistName} id={playlistElement.id} title={playlistElement.title} channelTitle={playlistElement.channelTitle} viewCount={playlistElement.viewCount} publishedAt={playlistElement.publishedAt} checkboxChange={checkboxChange} />
-		</li>
+		</li>;
 	});
 }
 

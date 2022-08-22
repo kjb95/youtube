@@ -19,7 +19,8 @@ public class addVideoDtoListTest {
     @Test
     @DisplayName("AddVideoDtoList @Validated 유효성 검사")
     public void addVideoDtoList() {
-        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        Validator validator = Validation.buildDefaultValidatorFactory()
+            .getValidator();
 
         AddVideoDto addVideoDto = AddVideoDto.builder()
             .id("EVDWHCOlbOw")
@@ -27,7 +28,7 @@ public class addVideoDtoListTest {
             .channelTitle("알앤비박사장")
             .description("아무말 설명")
             .title("박재범")
-//            .publishedAt("2022-07-28T02:52:58Z")
+            //            .publishedAt("2022-07-28T02:52:58Z")
             .viewCount(-2)
             .subscriberCount(Long.valueOf(123456))
             .build();

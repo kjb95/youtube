@@ -1,4 +1,4 @@
-import {useTranslation} from "react-i18next";
+import {useTranslation} from 'react-i18next';
 
 const SignUpErrorMessageList = ({validateSignUp}) => {
 	const {t} = useTranslation();
@@ -8,8 +8,8 @@ const SignUpErrorMessageList = ({validateSignUp}) => {
 			<div className='invalidInput'>
 				{t(`${errMessage}`)}
 			</div>
-		</li>
+		</li>;
 	});
-}
+};
 
 export default SignUpErrorMessageList;

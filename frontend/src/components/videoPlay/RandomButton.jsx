@@ -1,5 +1,5 @@
 import React from 'react';
-import {PlaylistRandomButtonImg} from '../../style/styled_component/videoPlay.jsx';
+import {PlaylistRandomButtonImg} from '../../style/styledComponent/videoPlay.jsx';
 import {randomPlay} from '../../service/videPlay/randomButton.jsx';
 
 const RandomButton = ({
@@ -10,7 +10,7 @@ const RandomButton = ({
 
 	return <PlaylistRandomButtonImg src='./img/randomButton.png' alt='randomButton' onClick={event => {
 		randomPlay(event, playlistDataUpdate, setPlaylistUpdate);
-	}} isRandom={isRandom} />
-}
+	}} isRandom={isRandom} />;
+};
 
 export default RandomButton;

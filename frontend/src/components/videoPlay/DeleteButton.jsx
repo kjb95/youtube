@@ -1,5 +1,5 @@
-import React from "react";
-import {PlaylistModifyButtonImg} from '../../style/styled_component/videoPlay.jsx';
+import React from 'react';
+import {PlaylistModifyButtonImg} from '../../style/styledComponent/videoPlay.jsx';
 import {deletePlayList} from '../../service/videPlay/deleteButton.jsx';
 
 const DeleteButton = ({

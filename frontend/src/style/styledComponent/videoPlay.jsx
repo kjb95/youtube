@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 import {OverflowBox} from './common';
 
@@ -39,18 +39,18 @@ export const PlayingVideoMain = styled.main`
   & > *{
     margin-top: 5%;
   }
-`
+`;
 export const PlayingVideoDiscriptionViewMore = styled.div`
   color: gray;
   font-size: small;
   cursor: pointer;
-`
+`;
 export const PlayingVideoDescriptionBriefly = styled.div`
   color: gray;
   font-size: small;
   cursor: pointer;
   display: none;
-`
+`;
 
 export const AddPlaylistFormBox = styled.div`
   color: gray;
@@ -127,7 +127,7 @@ export const PlaylistAnchorBox = styled.div`
   & a {
     padding: 1%;
     display: flex;
-    background-color: ${(props) => props.playlistName === "current_playlist" ? "#dcdcdc" : "black"};
+    background-color: ${(props) => props.playlistName === 'current_playlist' ? '#dcdcdc' : 'black'};
   }
 `;
 

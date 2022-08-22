@@ -1,13 +1,15 @@
-import React from "react";
-import {SelectLanguageSpan} from "../../style/styled_component/navigation";
-import {useTranslation} from "react-i18next";
+import React from 'react';
+import {SelectLanguageSpan} from '../../style/styledComponent/navigation';
+import {useTranslation} from 'react-i18next';
 
 const SelectLanguage = ({
 	language,
 	setLanguage
 }) => {
 	const {t} = useTranslation();
-	if (language === null) language = localStorage.getItem('lang');
+	if (!language) {
+		language = localStorage.getItem('lang');
+	}
 
 	return <>
 		<SelectLanguageSpan currentLanguage={language} language='ko' onClick={() => setLanguage('ko')}>
@@ -17,6 +19,6 @@ const SelectLanguage = ({
 			{t('english')}
 		</SelectLanguageSpan>
 	</>;
-}
+};
 
 export default SelectLanguage;

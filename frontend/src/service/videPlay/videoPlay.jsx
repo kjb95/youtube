@@ -1,4 +1,4 @@
-import {getCookie, setCookie} from "../common.js";
+import {getCookie, setCookie} from '../common.js';
 
 /**
  * 유튜브 동영상 설명의 더보기 버튼에 대한 이벤트 함수
@@ -10,7 +10,7 @@ export const viewMore = (viewMoreRef, descriptionRef, brieflyRef) => {
 	viewMoreRef.current.style.display = 'none';
 	descriptionRef.current.style.display = 'block';
 	brieflyRef.current.style.display = 'block';
-}
+};
 
 /**
  * 유튜브 동영상 설명의 간략히 버튼에 대한 이벤트 함수
@@ -22,7 +22,7 @@ export const briefly = (viewMoreRef, descriptionRef, brieflyRef) => {
 	viewMoreRef.current.style.display = 'block';
 	descriptionRef.current.style.display = '-webkit-box';
 	brieflyRef.current.style.display = 'none';
-}
+};
 
 /**
  * 모든 공지사항이 닫혔는지 확인
@@ -34,14 +34,18 @@ export const isNoticeAllClose = (notice, isNoticeClose) => {
 	let isAllClose = true;
 
 	notice.map((data, index) => {
-		if (isNoticeClose && isNoticeClose[index]) return '';
-		if (getCookie(index) !== '') return '';
+		if (isNoticeClose && isNoticeClose[index]) {
+			return '';
+		}
+		if (getCookie(index) !== '') {
+			return '';
+		}
 		isAllClose = false;
-		return ''
-	})
+		return '';
+	});
 
 	return isAllClose;
-}
+};
 
 /**
  * 체크박스의 상태 변경에 대한 이벤트 함수
@@ -56,7 +60,7 @@ export const checkboxChange = (event, checkboxes, setCheckboxes) => {
 	} = event.target;
 	setCheckboxes({
 		...checkboxes,
-		[name]: checked,
+		[name]: checked
 	});
 };
 
@@ -72,13 +76,13 @@ export const clickDoNotSeeToday = (event, noticeCookie, setNoticeCookie) => {
 	if (event.target.checked === true) {
 		setNoticeCookie({
 			...noticeCookie,
-			[name]: true,
+			[name]: true
 		});
 	}
 	else {
 		setNoticeCookie({
 			...noticeCookie,
-			[name]: false,
+			[name]: false
 		});
 	}
 };
@@ -94,16 +98,20 @@ export const noticeClose = (event, isNoticeClose, setIsNoticeClose, noticeCookie
 	const {name} = event.target;
 	setIsNoticeClose({
 		...isNoticeClose,
-		[name]: true,
+		[name]: true
 	});
 
-	if (noticeCookie && noticeCookie[name] === true) setCookie(name, "true", 86400000); // 하루동안 열지 않기
+	if (noticeCookie && noticeCookie[name] === true) {
+		setCookie(name, 'true', 86400000);
+	} // 하루동안 열지 않기
 };
 
 /**
  * 다음 동영상 페이지로 이동
  */
 export const goNextPlaylist = (nextPlaylist) => {
-	if (nextPlaylist === undefined) return null;
-	document.location.href = `/video_play?page=${nextPlaylist.id}`;
-}
+	if (!nextPlaylist) {
+		return null;
+	}
+	document.location.href = `/playlist?page=${nextPlaylist.id}`;
+};

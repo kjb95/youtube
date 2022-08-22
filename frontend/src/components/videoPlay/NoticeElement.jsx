@@ -1,6 +1,6 @@
-import React from "react";
-import {NoticeCloseButtonImg, NoticeDoNotSeeTodayInput, NoticeImg,} from "../../style/styled_component/videoPlay.jsx";
-import {useTranslation} from "react-i18next";
+import React from 'react';
+import {NoticeCloseButtonImg, NoticeDoNotSeeTodayInput, NoticeImg} from '../../style/styledComponent/videoPlay.jsx';
+import {useTranslation} from 'react-i18next';
 
 const NoticeElement = ({
 	title,
@@ -8,7 +8,7 @@ const NoticeElement = ({
 	img,
 	name,
 	noticeClose,
-	clickDoNotSeeToday,
+	clickDoNotSeeToday
 }) => {
 	const {t} = useTranslation();
 

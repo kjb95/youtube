@@ -1,6 +1,6 @@
-import React from "react";
-import {HomeSpan} from "../../style/styled_component/navigation";
-import {useTranslation} from "react-i18next";
+import React from 'react';
+import {HomeSpan} from '../../style/styledComponent/navigation';
+import {useTranslation} from 'react-i18next';
 
 function Home() {
 	const {t} = useTranslation();

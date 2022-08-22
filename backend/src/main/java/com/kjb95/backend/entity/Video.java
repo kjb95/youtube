@@ -40,16 +40,6 @@ public class Video {
 
     @Override
     public String toString() {
-        return "Video{" +
-            "id='" + id + '\'' +
-            ", channelId='" + channelId + '\'' +
-            ", channelTitle='" + channelTitle + '\'' +
-            ", description='" + description + '\'' +
-            ", title='" + title + '\'' +
-            ", publishedAt=" + publishedAt +
-            ", viewCount=" + viewCount +
-            ", subscriberCount=" + subscriberCount +
-            ", isExist=" + isExist +
-            '}';
+        return "Video{" + "id='" + id + '\'' + ", channelId='" + channelId + '\'' + ", channelTitle='" + channelTitle + '\'' + ", description='" + description + '\'' + ", title='" + title + '\'' + ", publishedAt=" + publishedAt + ", viewCount=" + viewCount + ", subscriberCount=" + subscriberCount + ", isExist=" + isExist + '}';
     }
 }

@@ -13,7 +13,7 @@ export const createAccount = async (id, password, nickname, setValidateSignUp, s
 		id: id,
 		password: password,
 		nickname: nickname
-	}
+	};
 
 	await axios.post('http://localhost:8080/api/users', account)
 			.then(res => {
@@ -25,5 +25,5 @@ export const createAccount = async (id, password, nickname, setValidateSignUp, s
 				else {
 					setValidateSignUp(res.errorMessageList);
 				}
-			})
-}
+			});
+};

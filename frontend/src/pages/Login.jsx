@@ -1,5 +1,5 @@
-import {GoogleLoginInput, LoginBox, LoginInformationP, LoginInput, LoginTitleH3} from "../style/styled_component/login.jsx";
-import {useTranslation} from "react-i18next";
+import {GoogleLoginInput, LoginBox, LoginInformationP, LoginInput, LoginTitleH3} from '../style/styledComponent/login.jsx';
+import {useTranslation} from 'react-i18next';
 
 function Login() {
 	const {t} = useTranslation();
@@ -32,7 +32,7 @@ function Login() {
 				</div>
 			</div>
 		</div>
-	</LoginBox>
+	</LoginBox>;
 }
 
 export default Login;

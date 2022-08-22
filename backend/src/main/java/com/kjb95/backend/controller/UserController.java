@@ -31,13 +31,12 @@ public class UserController {
      * @return 회원가입 성공 혹은 실패 정보가 담긴 데이터
      */
     @PostMapping
-    public AddUserResponseDto addUser(@Validated @RequestBody AddUserDto addUserDto,
-        BindingResult bindingResult) {
+    public AddUserResponseDto addUser(@Validated @RequestBody AddUserDto addUserDto, BindingResult bindingResult) {
         log.info("Post /api/users");
         if (bindingResult.hasErrors()) {
             log.error("errors={}", bindingResult.getAllErrors());
-            List<String> errorMessageList = bindingResult
-                .getAllErrors().stream()
+            List<String> errorMessageList = bindingResult.getAllErrors()
+                .stream()
                 .map(s -> s.getDefaultMessage())
                 .collect(Collectors.toList());
             AddUserResponseDto addUserResponseDto = AddUserResponseDto.builder()

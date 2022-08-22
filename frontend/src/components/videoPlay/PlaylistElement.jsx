@@ -1,6 +1,6 @@
-import React from "react";
-import {PlaylistAnchorBox, PlaylistBox, PlaylistVideoImg,} from "../../style/styled_component/videoPlay.jsx";
-import {PlaylistInformationBox, PlaylistTitleBox, PlaylistYoutuberBox,} from "../../style/styled_component/index";
+import React from 'react';
+import {PlaylistAnchorBox, PlaylistBox, PlaylistVideoImg} from '../../style/styledComponent/videoPlay.jsx';
+import {PlaylistInformationBox, PlaylistTitleBox, PlaylistYoutuberBox} from '../../style/styledComponent/index';
 
 const PlaylistElement = ({
 	playlistName,
@@ -9,10 +9,10 @@ const PlaylistElement = ({
 	channelTitle,
 	viewCount,
 	publishedAt,
-	checkboxChange = null,
+	checkboxChange = null
 }) => {
 
-	const youtbeAddress = `/video_play?page=${id}`;
+	const youtbeAddress = `/playlist?page=${id}`;
 	const videoImgAddress = `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
 
 	return <PlaylistBox className={playlistName}>
@@ -24,7 +24,7 @@ const PlaylistElement = ({
 				<PlaylistYoutuberBox>{channelTitle}</PlaylistYoutuberBox>
 				<PlaylistInformationBox>{viewCount} ⦁ {publishedAt}</PlaylistInformationBox>
 			</div>
-		</a> </PlaylistAnchorBox> </PlaylistBox>
+		</a> </PlaylistAnchorBox> </PlaylistBox>;
 };
 
 export default PlaylistElement;
