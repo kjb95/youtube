@@ -2,7 +2,7 @@ package com.kjb95.backend.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.kjb95.backend.dto.CreateUserDto;
+import com.kjb95.backend.dto.CreateUserRequestDto;
 import com.kjb95.backend.dto.CreateUserResponseDto;
 import com.kjb95.backend.entity.User;
 import com.kjb95.backend.repository.UserRepository;
@@ -35,12 +35,12 @@ public class UserServiceTest {
     @Test
     @DisplayName("유저 생성시 동일한 아이디를 가진 사람이 있으면 안됨")
     public void createUser() {
-        CreateUserDto createUserDto = CreateUserDto.builder()
+        CreateUserRequestDto createUserRequestDto = CreateUserRequestDto.builder()
             .id("11111111")
             .nickname("22222222")
             .nickname("33333333")
             .build();
-        CreateUserResponseDto createUserResponseDto = userService.createUser(createUserDto);
+        CreateUserResponseDto createUserResponseDto = userService.createUser(createUserRequestDto);
 
         assertThat(createUserResponseDto.isSuccess()).isEqualTo(false);
     }

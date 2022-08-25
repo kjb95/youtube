@@ -1,6 +1,6 @@
 package com.kjb95.backend.controller;
 
-import com.kjb95.backend.dto.CreateUserDto;
+import com.kjb95.backend.dto.CreateUserRequestDto;
 import com.kjb95.backend.dto.CreateUserResponseDto;
 import com.kjb95.backend.service.UserService;
 import java.util.List;
@@ -27,11 +27,11 @@ public class UserController {
     /**
      * 회원가입
      *
-     * @param createUserDto 회원가입할 유저 정보
+     * @param createUserRequestDto 회원가입할 유저 정보
      * @return 회원가입 성공 혹은 실패 정보가 담긴 데이터
      */
     @PostMapping
-    public CreateUserResponseDto createUser(@Validated @RequestBody CreateUserDto createUserDto, BindingResult bindingResult) {
+    public CreateUserResponseDto createUser(@Validated @RequestBody CreateUserRequestDto createUserRequestDto, BindingResult bindingResult) {
         log.info("Post /api/users");
         if (bindingResult.hasErrors()) {
             log.error("errors={}", bindingResult.getAllErrors());
@@ -45,6 +45,6 @@ public class UserController {
                 .build();
             return createUserResponseDto;
         }
-        return userService.createUser(createUserDto);
+        return userService.createUser(createUserRequestDto);
     }
 }

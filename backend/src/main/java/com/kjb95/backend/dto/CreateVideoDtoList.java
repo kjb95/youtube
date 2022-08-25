@@ -16,5 +16,5 @@ public class CreateVideoDtoList {
 
     @NotNull
     @Valid
-    private List<CreateVideoDto> createVideoDtoList;
+    private List<CreateVideoRequestDto> createVideoRequestDtoList;
 }

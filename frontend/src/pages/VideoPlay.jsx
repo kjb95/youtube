@@ -22,7 +22,7 @@ const VideoPlay = () => {
 	// window.localStorage.clear();
 	const location = useLocation();
 	const query = qs.parse(location.search, {ignoreQueryPrefix: true});
-	const youtbeURL = 'https://www.youtube.com/watch?v=' + query.page;
+	const youtubeURL = 'https://www.youtube.com/watch?v=' + query.page;
 
 	const [sequentialPlaylist, setSequentialPlaylist] = useState(undefined);
 	const [randomPlaylist, setRandomPlaylist] = useState(undefined);
@@ -104,9 +104,10 @@ const VideoPlay = () => {
 					}} clickDoNotSeeToday={(event) => {
 						clickDoNotSeeToday(event, noticeCookie, setNoticeCookie);
 					}} /> </NoticeBox>)} <PlayingYoutubePlayerSection>
-			<ReactPlayer url={youtbeURL} width='100%' height='100%' playing controls onEnded={() => {
+			<ReactPlayer url={youtubeURL} width='100%' height='100%' playing controls onEnded={() => {
 				goNextPlaylist(nextPlaylist);
-			}} /> </PlayingYoutubePlayerSection> <PlayingVideoDiscriptionSection1>
+			}} /> </PlayingYoutubePlayerSection>
+			<PlayingVideoDiscriptionSection1>
 			<PlayingVideoTitleBox>{currentPlaylist.title}</PlayingVideoTitleBox>
 			<PlayingVideoInformationBox>
 				{currentPlaylist.viewCount} ⦁ {currentPlaylist.publishedAt}

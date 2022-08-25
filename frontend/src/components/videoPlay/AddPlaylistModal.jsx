@@ -14,9 +14,9 @@ const AddPlaylistModal = ({
 	return (<Modal isOpen={addPlaylistModal} ariaHideApp={false} style={{
 		content: {
 			width: '25%',
-			height: '10%'
+			height: '15%'
 		}
-	}}> <AddPlaylistFormBox>
+	}}><AddPlaylistFormBox>
 		{t('youtubeVideoID') + ' : '}
 		<input type='text' name='id' value={id} onChange={event => {
 			inputChange(event, setId);

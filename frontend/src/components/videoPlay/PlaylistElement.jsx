@@ -12,13 +12,13 @@ const PlaylistElement = ({
 	checkboxChange = null
 }) => {
 
-	const youtbeAddress = `/playlist?page=${id}`;
-	const videoImgAddress = `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
+	const url = `/playlist?page=${id}`;
+	const thumbnailAddress = `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
 
 	return <PlaylistBox className={playlistName}>
 		<input type='checkbox' id={id} name={id} onClick={checkboxChange} />
-		<PlaylistAnchorBox playlistName={playlistName}> <a href={youtbeAddress}>
-			<PlaylistVideoImg src={videoImgAddress} alt='video_img' />
+		<PlaylistAnchorBox playlistName={playlistName}> <a href={url}>
+			<PlaylistVideoImg src={thumbnailAddress} alt='video_img' />
 			<div>
 				<PlaylistTitleBox>{title}</PlaylistTitleBox>
 				<PlaylistYoutuberBox>{channelTitle}</PlaylistYoutuberBox>

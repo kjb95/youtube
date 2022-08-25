@@ -23,6 +23,6 @@
   "goToLoginPage": "로그인 페이지로 이동",
   "invalidInput": "영문자, 숫자만을 포함하여 8~20자로 입력하세요",
   "differentPassword": "동일한 비밀번호를 입력하세요",
-  "overlapID": "동일한 아이디가 존재합니다",
+  "duplicatedID": "동일한 아이디가 존재합니다",
   "signUpSuccess": "회원가입을 축하드립니다.\n가입하신 아이디로 로그인 해주세요."
 }

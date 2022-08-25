@@ -5,10 +5,10 @@ import axios from 'axios';
  * @param id 유저 아이디
  * @param password 유저 비밀번호
  * @param nickname 유저 닉네임
- * @param setValidateSignUp 회원가입 실패시 생기는 에러메시지 상태값을 변경해 주는 함수 (useState)
+ * @param setSignUpErrorMessageList 회원가입 실패시 생기는 에러메시지 상태값을 변경해 주는 함수 (useState)
  * @param signUpSuccess 회원가입 성공시 보여주는 메시지
  */
-export const createAccount = async (id, password, nickname, setValidateSignUp, signUpSuccess) => {
+export const createAccount = async (id, password, nickname, setSignUpErrorMessageList, signUpSuccess) => {
 	const account = {
 		id: id,
 		password: password,
@@ -23,7 +23,7 @@ export const createAccount = async (id, password, nickname, setValidateSignUp, s
 					window.location.href = '/login';
 				}
 				else {
-					setValidateSignUp(res.errorMessageList);
+					setSignUpErrorMessageList(res.errorMessageList);
 				}
 			});
 };

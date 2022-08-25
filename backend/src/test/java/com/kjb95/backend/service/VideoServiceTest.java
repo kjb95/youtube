@@ -2,7 +2,7 @@ package com.kjb95.backend.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.kjb95.backend.dto.CreateVideoDto;
+import com.kjb95.backend.dto.CreateVideoRequestDto;
 import com.kjb95.backend.entity.Video;
 import com.kjb95.backend.repository.VideoRepository;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ class VideoServiceTest {
     VideoService videoService;
     @Autowired
     VideoRepository videoRepository;
-    CreateVideoDto videoWithoutSubscriberCount;
+    CreateVideoRequestDto videoWithoutSubscriberCount;
 
     @BeforeEach
     public void beforeEach() {
@@ -31,7 +31,7 @@ class VideoServiceTest {
             videoRepository.delete(video);
         }
 
-        videoWithoutSubscriberCount = CreateVideoDto.builder()
+        videoWithoutSubscriberCount = CreateVideoRequestDto.builder()
             .id("EVDWHCOlbOw")
             .channelId("UCEEGx5rpyzmcukyZmqr-MnA")
             .channelTitle("알앤비박사장")

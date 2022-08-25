@@ -1,6 +1,6 @@
 package com.kjb95.backend.service;
 
-import com.kjb95.backend.dto.CreateUserDto;
+import com.kjb95.backend.dto.CreateUserRequestDto;
 import com.kjb95.backend.dto.CreateUserResponseDto;
 import com.kjb95.backend.entity.User;
 import com.kjb95.backend.repository.UserRepository;
@@ -19,20 +19,20 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    @Value("${overlap-id}")
-    private String overlapID;
+    @Value("${duplicated-id}")
+    private String duplicatedID;
 
     /**
      * 회원가입
      *
-     * @param createUserDto 회원가입할 유저 정보
+     * @param createUserRequestDto 회원가입할 유저 정보
      * @return 회원가입 성공 혹은 실패 정보가 담긴 데이터
      */
-    public CreateUserResponseDto createUser(CreateUserDto createUserDto) {
-        if (userRepository.findById(createUserDto.getId())
+    public CreateUserResponseDto createUser(CreateUserRequestDto createUserRequestDto) {
+        if (userRepository.findById(createUserRequestDto.getId())
             .orElse(null) != null) {
-            List<String> errorMessageList = List.of(overlapID);
-            log.error("errors={}", overlapID);
+            List<String> errorMessageList = List.of(duplicatedID);
+            log.error("errors={}", duplicatedID);
             CreateUserResponseDto createUserResponseDto = CreateUserResponseDto.builder()
                 .isSuccess(false)
                 .errorMessageList(errorMessageList)
@@ -41,9 +41,9 @@ public class UserService {
         }
 
         User user = User.builder()
-            .id(createUserDto.getId())
-            .password(createUserDto.getPassword())
-            .nickname(createUserDto.getNickname())
+            .id(createUserRequestDto.getId())
+            .password(createUserRequestDto.getPassword())
+            .nickname(createUserRequestDto.getNickname())
             .build();
         log.info("createUser : {}", user.toString());
         userRepository.save(user);

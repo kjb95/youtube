@@ -13,10 +13,10 @@ const Index = () => {
 
 	useEffect(() => {
 		// window.localStorage.clear();
-		const lang = localStorage.getItem('lang');
-		const langParameter = lang ?? 'ko';
+		let language = localStorage.getItem('language');
+		language = language ?? 'ko';
 
-		axios.get(`http://localhost:8080/api/video?lang=${langParameter}`)
+		axios.get(`http://localhost:8080/api/video?language=${language}`)
 				.then(res => setPlaylist(res.data));
 	}, [t]);
 

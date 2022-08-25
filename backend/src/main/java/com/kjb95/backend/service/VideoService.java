@@ -1,6 +1,6 @@
 package com.kjb95.backend.service;
 
-import com.kjb95.backend.dto.CreateVideoDto;
+import com.kjb95.backend.dto.CreateVideoRequestDto;
 import com.kjb95.backend.dto.VideoDto;
 import com.kjb95.backend.entity.Video;
 import com.kjb95.backend.repository.VideoRepository;
@@ -22,10 +22,10 @@ public class VideoService {
     /**
      * 동영상 추가
      *
-     * @param createVideoDto 추가할 유튜브 비디오
+     * @param createVideoRequestDto 추가할 유튜브 비디오
      */
-    public void createVideo(CreateVideoDto createVideoDto) {
-        Video video = createVideoDto.toVideo();
+    public void createVideo(CreateVideoRequestDto createVideoRequestDto) {
+        Video video = createVideoRequestDto.toVideo();
         log.info("createVideo : {}", video);
         videoRepository.save(video);
     }
@@ -33,15 +33,15 @@ public class VideoService {
     /**
      * 모든 동영상 리스트 조회
      *
-     * @param lang 다국어 설정값
+     * @param language 다국어 설정값
      * @return 모든 동영상 리스트
      */
-    public List<VideoDto> findAllVideo(String lang) {
+    public List<VideoDto> findAllVideo(String language) {
         List<VideoDto> videoDtoList = new ArrayList();
         List<Video> videoList = videoRepository.findAll();
         for (int i = 0; i < videoList.size(); i++) {
             videoDtoList.add(videoList.get(i)
-                .toVideoDto(lang));
+                .toVideoDto(language));
         }
         return videoDtoList;
     }
@@ -65,13 +65,13 @@ public class VideoService {
     /**
      * 랜덤으로 섞은 동영상 리스트 조회
      *
-     * @param lang 다국어 설정값
+     * @param language 다국어 설정값
      * @return 랜덤으로 섞은 동영상 리스트
      */
-    public List<VideoDto> findRandomVideo(String lang) {
+    public List<VideoDto> findRandomVideo(String language) {
         List<VideoDto> videoDtoList = new ArrayList();
         videoRepository.findAll()
-            .forEach(video -> videoDtoList.add(video.toVideoDto(lang)));
+            .forEach(video -> videoDtoList.add(video.toVideoDto(language)));
         return combineVideoDtoList(videoDtoList);
     }
 

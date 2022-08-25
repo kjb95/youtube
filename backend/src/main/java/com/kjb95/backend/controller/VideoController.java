@@ -1,8 +1,8 @@
 package com.kjb95.backend.controller;
 
 import com.kjb95.backend.constant.Languages;
-import com.kjb95.backend.dto.CreateVideoDto;
 import com.kjb95.backend.dto.CreateVideoDtoList;
+import com.kjb95.backend.dto.CreateVideoRequestDto;
 import com.kjb95.backend.dto.VideoDto;
 import com.kjb95.backend.service.VideoService;
 import java.util.List;
@@ -48,7 +48,7 @@ public class VideoController {
             log.error("erros={}", bindingResult.getAllErrors());
             return;
         }
-        createVideoDtoList.getCreateVideoDtoList()
+        createVideoDtoList.getCreateVideoRequestDtoList()
             .forEach(videoService::createVideo);
     }
 
@@ -72,16 +72,16 @@ public class VideoController {
     /**
      * 동영상 추가
      *
-     * @param createVideoDto 추가할 동영상
+     * @param createVideoRequestDto 추가할 동영상
      */
     @PostMapping()
-    public void createVideo(@Validated @RequestBody CreateVideoDto createVideoDto, BindingResult bindingResult) {
+    public void createVideo(@Validated @RequestBody CreateVideoRequestDto createVideoRequestDto, BindingResult bindingResult) {
         log.info("Post /api/video");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
             return;
         }
-        videoService.createVideo(createVideoDto);
+        videoService.createVideo(createVideoRequestDto);
     }
 
     /**

@@ -1,9 +1,9 @@
 import {useTranslation} from 'react-i18next';
 
-const SignUpErrorMessageList = ({validateSignUp}) => {
+const SignUpErrorMessageList = ({signUpErrorMessageList}) => {
 	const {t} = useTranslation();
 
-	return validateSignUp.map((errMessage, index) => {
+	return signUpErrorMessageList.map((errMessage, index) => {
 		return <li key={index}>
 			<div className='invalidInput'>
 				{t(`${errMessage}`)}

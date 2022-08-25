@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CreateVideoDto {
+public class CreateVideoRequestDto {
 
     @NotNull(message = "아이디는 필수 입력값 입니다.")
     private String id;

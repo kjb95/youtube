@@ -17,7 +17,7 @@ function SignUp() {
 	const [validateConfirmPassword, setValidateConfirmPassword] = useState(false);
 	const [validateNickname, setValidateNickname] = useState(false);
 	const [isSamePassword, setIsSamePassword] = useState(false);
-	const [validateSignUp, setValidateSignUp] = useState(undefined);
+	const [signUpErrorMessageList, setSignUpErrorMessageList] = useState(undefined);
 
 	useEffect(() => {
 		const regexp = /^[a-zA-Z0-9]{8,20}$/;
@@ -51,7 +51,7 @@ function SignUp() {
 		else {
 			setIsSamePassword(false);
 		}
-	}, [id, password, confirmPassword, nickname, validateSignUp]);
+	}, [id, password, confirmPassword, nickname, signUpErrorMessageList]);
 
 	return <SignUpBox>
 		<div id='con'>
@@ -82,9 +82,9 @@ function SignUp() {
 					<div>
 						{validateId && validatePassword && validateConfirmPassword && validateNickname &&
 								<input type='button' value={t('createAccount')} className='btn' onClick={() => {
-									createAccount(id, password, nickname, setValidateSignUp, t('signUpSuccess'));
-								}} />} {validateSignUp &&
-							<SignUpErrorMessageList validateSignUp={validateSignUp} />}
+									createAccount(id, password, nickname, setSignUpErrorMessageList, t('signUpSuccess'));
+								}} />} {signUpErrorMessageList &&
+							<SignUpErrorMessageList signUpErrorMessageList={signUpErrorMessageList} />}
 					</div>
 					<hr />
 					<p className='find'>

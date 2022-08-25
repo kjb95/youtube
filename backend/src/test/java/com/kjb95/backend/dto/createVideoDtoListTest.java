@@ -22,7 +22,7 @@ public class createVideoDtoListTest {
         Validator validator = Validation.buildDefaultValidatorFactory()
             .getValidator();
 
-        CreateVideoDto createVideoDto = CreateVideoDto.builder()
+        CreateVideoRequestDto createVideoRequestDto = CreateVideoRequestDto.builder()
             .id("EVDWHCOlbOw")
             .channelId("UCEEGx5rpyzmcukyZmqr-MnA")
             .channelTitle("알앤비박사장")
@@ -33,9 +33,9 @@ public class createVideoDtoListTest {
             .subscriberCount(Long.valueOf(123456))
             .build();
 
-        List<CreateVideoDto> createVideoDtoList = new ArrayList<>();
-        createVideoDtoList.add(createVideoDto);
-        CreateVideoDtoList list = new CreateVideoDtoList(createVideoDtoList);
+        List<CreateVideoRequestDto> createVideoRequestDtoList = new ArrayList<>();
+        createVideoRequestDtoList.add(createVideoRequestDto);
+        CreateVideoDtoList list = new CreateVideoDtoList(createVideoRequestDtoList);
 
         Set<ConstraintViolation<CreateVideoDtoList>> validate = validator.validate(list);
         Iterator<ConstraintViolation<CreateVideoDtoList>> iterator = validate.iterator();

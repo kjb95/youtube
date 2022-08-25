@@ -23,6 +23,6 @@
   "goToLoginPage": "Go To Login Page",
   "invalidInput": "Enter 8 To 20 Characters Including Only English Letters And Numbers",
   "differentPassword": "Enter The Same Password",
-  "overlapID": "Same ID Exists",
+  "duplicatedID": "Same ID Exists",
   "signUpSuccess": "Congratulations On Becoming A Member.\nLog In With Your Registered ID."
 }

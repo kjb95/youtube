@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const NavigationBox = styled.div`
-  margin-bottom:3%;
   font-weight: bold;
   display:flex;
   white-space:nowrap;
