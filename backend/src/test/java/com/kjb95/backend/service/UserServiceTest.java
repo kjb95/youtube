@@ -26,7 +26,7 @@ public class UserServiceTest {
     public void beforeEach() {
         User user = User.builder()
             .id("11111111")
-            .nickname("22222222")
+            .password("22222222")
             .nickname("33333333")
             .build();
         userRepository.save(user);
@@ -37,7 +37,7 @@ public class UserServiceTest {
     public void createUser() {
         CreateUserRequestDto createUserRequestDto = CreateUserRequestDto.builder()
             .id("11111111")
-            .nickname("22222222")
+            .password("22222222")
             .nickname("33333333")
             .build();
         CreateUserResponseDto createUserResponseDto = userService.createUser(createUserRequestDto);

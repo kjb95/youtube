@@ -1,5 +1,6 @@
 package com.kjb95.backend.service;
 
+import com.kjb95.backend.constant.ErrorCode;
 import com.kjb95.backend.dto.CreateUserRequestDto;
 import com.kjb95.backend.dto.CreateUserResponseDto;
 import com.kjb95.backend.entity.User;
@@ -7,20 +8,14 @@ import com.kjb95.backend.repository.UserRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-@PropertySource(value = "classpath:static/errors.properties")
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
-
-    @Value("${duplicated-id}")
-    private String duplicatedID;
 
     /**
      * 회원가입
@@ -31,8 +26,8 @@ public class UserService {
     public CreateUserResponseDto createUser(CreateUserRequestDto createUserRequestDto) {
         if (userRepository.findById(createUserRequestDto.getId())
             .orElse(null) != null) {
-            List<String> errorMessageList = List.of(duplicatedID);
-            log.error("errors={}", duplicatedID);
+            List<String> errorMessageList = List.of(ErrorCode.DUPLICATED_ID);
+            log.error("errors={}", ErrorCode.DUPLICATED_ID);
             CreateUserResponseDto createUserResponseDto = CreateUserResponseDto.builder()
                 .isSuccess(false)
                 .errorMessageList(errorMessageList)

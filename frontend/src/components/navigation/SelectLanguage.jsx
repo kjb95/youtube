@@ -8,7 +8,7 @@ const SelectLanguage = ({
 }) => {
 	const {t} = useTranslation();
 	if (!language) {
-		language = localStorage.getItem('lang');
+		language = localStorage.getItem('language');
 	}
 
 	return <>

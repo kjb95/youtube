@@ -17,14 +17,14 @@ function App() {
 	const {i18n} = useTranslation();
 
 	useEffect(() => {
+		const language = localStorage.getItem('language');
 		if (language === 'ko') {
-			localStorage.setItem('lang', 'ko');
+			localStorage.setItem('language', 'ko');
 		}
 		else if (language === 'en') {
-			localStorage.setItem('lang', 'en');
+			localStorage.setItem('language', 'en');
 		}
-		const lang = localStorage.getItem('lang');
-		if (!lang || lang === 'ko') {
+		if (!language || language === 'ko') {
 			i18n.changeLanguage('ko');
 		}
 		else {

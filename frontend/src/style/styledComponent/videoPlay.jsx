@@ -54,11 +54,8 @@ export const PlayingVideoDescriptionBriefly = styled.div`
 
 export const AddPlaylistFormBox = styled.div`
   color: gray;
-  margin: 1%;
 `;
 export const AddPlaylistButtonsSection = styled.section`
-  margin-top: 5%;
-
   & > * {
     margin: 1%;
   }

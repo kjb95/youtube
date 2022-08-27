@@ -1,5 +1,6 @@
 package com.kjb95.backend.controller;
 
+import com.kjb95.backend.constant.ConstantString;
 import com.kjb95.backend.constant.Languages;
 import com.kjb95.backend.dto.CreateVideoDtoList;
 import com.kjb95.backend.dto.CreateVideoRequestDto;
@@ -9,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/api/video")
-@PropertySource(value = "classpath:static/errors.properties")
 @Slf4j
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
@@ -32,9 +30,6 @@ public class VideoController {
 
     private final VideoService videoService;
     private final Languages languages;
-
-    @Value("${unsupported-languages}")
-    private String unsupportedLanguages;
 
     /**
      * 디비에 동영상 리스트 초기값 저장
@@ -55,18 +50,18 @@ public class VideoController {
     /**
      * 동영상 리스트 조회
      *
-     * @param lang 다국어 설정값
+     * @param language 다국어 설정값
      * @return 동영상 리스트
      */
     @GetMapping()
-    public List<VideoDto> findAllVideo(@RequestParam("lang") String lang) {
+    public List<VideoDto> findAllVideo(@RequestParam("language") String language) {
         log.info("Get /api/video");
         if (!languages.getLanguages()
-            .contains(lang)) {
-            log.error(unsupportedLanguages);
+            .contains(language)) {
+            log.error(ConstantString.UNSUPPORTED_LANGUAGES);
             return null;
         }
-        return videoService.findAllVideo(lang);
+        return videoService.findAllVideo(language);
     }
 
     /**
@@ -98,17 +93,17 @@ public class VideoController {
     /**
      * 랜덤으로 동영상 리스트 조회
      *
-     * @param lang 다국어 설정값
+     * @param language 다국어 설정값
      * @return 랜덤으로 섞은 동영상 리스트
      */
     @GetMapping("/random-value")
-    public List<VideoDto> findRandomVideo(@RequestParam("lang") String lang) {
+    public List<VideoDto> findRandomVideo(@RequestParam("language") String language) {
         log.info("Get /api/video/random-value");
         if (!languages.getLanguages()
-            .contains(lang)) {
-            log.error(unsupportedLanguages);
+            .contains(language)) {
+            log.error(ConstantString.UNSUPPORTED_LANGUAGES);
             return null;
         }
-        return videoService.findRandomVideo(lang);
+        return videoService.findRandomVideo(language);
     }
 }

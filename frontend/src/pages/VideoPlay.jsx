@@ -47,12 +47,12 @@ const VideoPlay = () => {
 
 	useEffect(() => {
 		//  window.localStorage.clear();
-		const lang = localStorage.getItem('lang');
-		const langParameter = lang ?? 'ko';
+		const language = localStorage.getItem('language');
+		const langParameter = language ?? 'ko';
 
-		axios.get(`http://localhost:8080/api/video?lang=${langParameter}`)
+		axios.get(`http://localhost:8080/api/video?language=${langParameter}`)
 				.then(res => setSequentialPlaylist(res.data));
-		axios.get(`http://localhost:8080/api/video/random-value?lang=${langParameter}`)
+		axios.get(`http://localhost:8080/api/video/random-value?language=${langParameter}`)
 				.then(res => setRandomPlaylist(res.data));
 		fetchNotice()
 				.then((data) => setNotice(data));

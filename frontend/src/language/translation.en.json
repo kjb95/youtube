@@ -24,5 +24,8 @@
   "invalidInput": "Enter 8 To 20 Characters Including Only English Letters And Numbers",
   "differentPassword": "Enter The Same Password",
   "duplicatedID": "Same ID Exists",
-  "signUpSuccess": "Congratulations On Becoming A Member.\nLog In With Your Registered ID."
+  "signUpSuccess": "Congratulations On Becoming A Member.\nLog In With Your Registered ID.",
+  "notNullID": "Enter Your ID",
+  "IDDoesNotExist": "ID Does Not Exist",
+  "wrongPassword": "Wrong Password"
 }

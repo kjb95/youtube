@@ -60,7 +60,6 @@ export const LoginBox = styled.div`
       hr{
           margin-top:20px;
           background:#eee;
-          
       }
       .find{
           color:#ddd;
@@ -77,13 +76,15 @@ export const LoginBox = styled.div`
       .find span:nth-child(1):before{
           content:none;
       }
-      
       .find span:nth-child(1){
           padding-left:0px;
       }
-      
       .find a:hover{
           color:#707070;
+      }
+      .invalidInput{
+        font-size: small;
+        color: red;
       }
 `;
 

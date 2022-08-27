@@ -49,22 +49,22 @@ public class Video {
     /**
      * video를 VideoDtoo로 변환
      *
-     * @param lang 다국어 설정값
+     * @param language 다국어 설정값
      * @return Video에서 변환된 VideoDto
      */
-    public VideoDto toVideoDto(String lang) {
+    public VideoDto toVideoDto(String language) {
         Duration duration = Duration.between(publishedAt, LocalDateTime.now());
-        String durationString = UnitCalculator.calculateDurationBySeconds(duration.getSeconds(), lang);
+        String durationString = UnitCalculator.calculateDurationBySeconds(duration.getSeconds(), language);
 
         String viewCountString = "";
         String subscriberCountString = "";
-        if (lang.equals("ko")) {
-            viewCountString = UnitCalculator.calculateStringByNumber("조회수 ", viewCount, "회", lang);
-            subscriberCountString = UnitCalculator.calculateStringByNumber("구독자 ", subscriberCount, "명", lang);
+        if (language.equals("ko")) {
+            viewCountString = UnitCalculator.calculateStringByNumber("조회수 ", viewCount, "회", language);
+            subscriberCountString = UnitCalculator.calculateStringByNumber("구독자 ", subscriberCount, "명", language);
         }
-        else if (lang.equals("en")) {
-            viewCountString = UnitCalculator.calculateStringByNumber("", viewCount, " views", lang);
-            subscriberCountString = UnitCalculator.calculateStringByNumber("", subscriberCount, " subscribers", lang);
+        else if (language.equals("en")) {
+            viewCountString = UnitCalculator.calculateStringByNumber("", viewCount, " views", language);
+            subscriberCountString = UnitCalculator.calculateStringByNumber("", subscriberCount, " subscribers", language);
         }
 
         VideoDto videoDto = VideoDto.builder()

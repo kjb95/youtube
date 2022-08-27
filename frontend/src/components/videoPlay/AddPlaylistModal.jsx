@@ -14,7 +14,7 @@ const AddPlaylistModal = ({
 	return (<Modal isOpen={addPlaylistModal} ariaHideApp={false} style={{
 		content: {
 			width: '25%',
-			height: '15%'
+			height: '10%'
 		}
 	}}><AddPlaylistFormBox>
 		{t('youtubeVideoID') + ' : '}

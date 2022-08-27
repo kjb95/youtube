@@ -16,6 +16,22 @@ https://github.com/kjb95/youtube
 - JPA
 - Docker
 
+# 프로젝트 실행 방법
+
+### 초기설정
+
+1. 깃 레포지토리에서 클론받기
+2. frontend 폴더에 .env 만들고 환경변수 REACT_APP_YOUTUBE_API=[유튜브 API Key] 추가
+3. 도커로 MySQL 환경 구축
+4. 스프링부트 실행
+5. ./frontend 에서 npm run init 실행 (유튜브 API를 호출 하여 얻은 초기 데이터를 디비에 저장)
+
+### 초기설정 이후
+
+1. ./backend 에서 ./gradlew build 실행
+2. 도커로 구축한 MySQL 환경 제거
+3. 루트 폴더에서 docker-compose up --build
+
 # 프로젝트 진행 단계
 
 프로젝트는 아래의 순서로 점층적으로 발전 시켰습니다.
@@ -76,3 +92,6 @@ https://user-images.githubusercontent.com/107471786/182569742-fa301ae5-57c7-4edf
 
 - @Validated를 이용한 유효성 검증
 - RESTful API 규칙 적용
+- Java 에서는 JavaDoc, JavaScript 에서는 JSDoc 주석 사용
+- 네이밍 컨벤션 규칙 준수
+- 회원가입/로그인 기능 추가 (로그인 유지 구현 x, 구글 OAuth 구현 x)
