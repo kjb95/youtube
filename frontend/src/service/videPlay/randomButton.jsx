@@ -10,6 +10,7 @@ export const randomPlay = (event, playlistDataUpdate, setPlaylistUpdate) => {
 	if (isRandom === 'true') {
 		event.target.style.opacity = 0.4;
 		window.localStorage.setItem('isRandom', false);
+		window.localStorage.removeItem('randomPlaylist');
 	}
 	else {
 		event.target.style.opacity = 1;

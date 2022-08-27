@@ -46,14 +46,25 @@ const VideoPlay = () => {
 	} = useTranslation();
 
 	useEffect(() => {
-		//  window.localStorage.clear();
+		// window.localStorage.clear();
 		const language = localStorage.getItem('language');
 		const langParameter = language ?? 'ko';
 
 		axios.get(`http://localhost:8080/api/video?language=${langParameter}`)
 				.then(res => setSequentialPlaylist(res.data));
-		axios.get(`http://localhost:8080/api/video/random-value?language=${langParameter}`)
-				.then(res => setRandomPlaylist(res.data));
+
+		const localStorageRandomPlaylist = JSON.parse(localStorage.getItem('randomPlaylist'));
+		if (localStorageRandomPlaylist) {
+			setRandomPlaylist(localStorageRandomPlaylist);
+		}
+		else {
+			axios.get(`http://localhost:8080/api/video/random-value?language=${langParameter}`)
+					.then(res => {
+						localStorage.setItem('randomPlaylist', JSON.stringify(res.data));
+						setRandomPlaylist(res.data)
+					});
+		}
+
 		fetchNotice()
 				.then((data) => setNotice(data));
 
@@ -71,10 +82,10 @@ const VideoPlay = () => {
 			return;
 		}
 		if (random) {
-			setPlaylist(sequentialPlaylist, query.page, setCurrentPlaylist, setNextPlaylist);
+			setPlaylist(randomPlaylist, query.page, setCurrentPlaylist, setNextPlaylist);
 		}
 		else {
-			setPlaylist(randomPlaylist, query.page, setCurrentPlaylist, setNextPlaylist);
+			setPlaylist(sequentialPlaylist, query.page, setCurrentPlaylist, setNextPlaylist);
 		}
 
 	}, [sequentialPlaylist, randomPlaylist, query.page, random]);

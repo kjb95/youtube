@@ -55,10 +55,12 @@ public class CreateVideoRequestDto {
             .viewCount(viewCount)
             .isExist(true)
             .build();
-        if (subscriberCount == null)
+        if (subscriberCount == null) {
             video.setSubscriberCount(-1);
-        else
+        }
+        else {
             video.setSubscriberCount(subscriberCount);
+        }
         return video;
     }
 }

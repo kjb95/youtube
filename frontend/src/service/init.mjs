@@ -18,18 +18,19 @@ const addInitialData = async () => {
 	const jsonFile = fs.readFileSync(filePath);
 	const parsedJsonData = JSON.parse(jsonFile);
 	const playlist = {
-		addPlaylistDtoList: []
+		createVideoRequestDtoList: []
 	};
 
 	for (let i = 0; i < parsedJsonData.playlist.length; i++) {
-		playlist.addPlaylistDtoList.push(await getYoutubeData(parsedJsonData.playlist[i].id));
+		playlist.createVideoRequestDtoList.push(await getYoutubeData(parsedJsonData.playlist[i].id));
 	}
+
 	axios.post('http://localhost:8080/api/video/initial-value', playlist)
 			.then(res => {
-				console.log('res : ', res);
+				console.log('success!');
 			})
 			.catch((err) => {
-				console.log('err : ', err);
+				console.log('error!');
 			});
 };
 

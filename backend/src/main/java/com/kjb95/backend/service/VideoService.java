@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -38,10 +40,9 @@ public class VideoService {
      */
     public List<VideoDto> findAllVideo(String language) {
         List<VideoDto> videoDtoList = new ArrayList();
-        List<Video> videoList = videoRepository.findAll();
-        for (int i = 0; i < videoList.size(); i++) {
-            videoDtoList.add(videoList.get(i)
-                .toVideoDto(language));
+        List<Video> videoList = videoRepository.findAll(Sort.by(Direction.ASC, "publishedAt"));
+        for (Video video : videoList) {
+            videoDtoList.add(video.toVideoDto(language));
         }
         return videoDtoList;
     }
@@ -83,8 +84,9 @@ public class VideoService {
     public void deleteVideoByIdList(@RequestBody Map<String, Boolean> videoIds) {
         videoRepository.findAll()
             .forEach(video -> {
-                if (videoIds.get(video.getId()) == null)
+                if (videoIds.get(video.getId()) == null || videoIds.get(video.getId()) == false) {
                     return;
+                }
 
                 log.info("deleteVideoByIdList : {}", video);
                 video.setExist(false);

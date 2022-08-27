@@ -80,7 +80,7 @@ function SignUp() {
 					</form>
 					<br />
 					<div>
-						{validateId && validatePassword && validateConfirmPassword && validateNickname &&
+						{validateId && validatePassword && validateConfirmPassword && validateNickname && isSamePassword &&
 								<input type='button' value={t('createAccount')} className='btn' onClick={() => {
 									createAccount(id, password, nickname, setSignUpErrorMessageList, t('signUpSuccess'));
 								}} />} {signUpErrorMessageList &&
