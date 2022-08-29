@@ -31,7 +31,6 @@ public class AuthController {
      */
     @PostMapping("/login")
     public LoginResponseDto login(@Validated @RequestBody LoginRequestDto loginRequestDto, BindingResult bindingResult) {
-        log.info("Post /api/auth/login");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
             return new LoginResponseDto(false, ErrorCode.NOT_NULL_ID);

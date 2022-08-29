@@ -38,7 +38,6 @@ public class VideoController {
      */
     @PostMapping("/initial-value")
     public void initVideo(@Validated @RequestBody CreateVideoDtoList createVideoDtoList, BindingResult bindingResult) {
-        log.info("Post /api/video/initial-value");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
             return;
@@ -55,7 +54,6 @@ public class VideoController {
      */
     @GetMapping()
     public List<VideoDto> findAllVideo(@RequestParam("language") String language) {
-        log.info("Get /api/video");
         if (!languages.getLanguages()
             .contains(language)) {
             log.error(ConstantString.UNSUPPORTED_LANGUAGES);
@@ -71,7 +69,6 @@ public class VideoController {
      */
     @PostMapping()
     public void createVideo(@Validated @RequestBody CreateVideoRequestDto createVideoRequestDto, BindingResult bindingResult) {
-        log.info("Post /api/video");
         if (bindingResult.hasErrors()) {
             log.error("erros={}", bindingResult.getAllErrors());
             return;
@@ -86,7 +83,6 @@ public class VideoController {
      */
     @DeleteMapping()
     public void deleteVideoByIdList(@RequestBody Map<String, Boolean> videoIds) {
-        log.info("Delete /api/video");
         videoService.deleteVideoByIdList(videoIds);
     }
 
@@ -98,7 +94,6 @@ public class VideoController {
      */
     @GetMapping("/random-value")
     public List<VideoDto> findRandomVideo(@RequestParam("language") String language) {
-        log.info("Get /api/video/random-value");
         if (!languages.getLanguages()
             .contains(language)) {
             log.error(ConstantString.UNSUPPORTED_LANGUAGES);

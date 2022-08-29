@@ -32,7 +32,6 @@ public class UserController {
      */
     @PostMapping
     public CreateUserResponseDto createUser(@Validated @RequestBody CreateUserRequestDto createUserRequestDto, BindingResult bindingResult) {
-        log.info("Post /api/users");
         if (bindingResult.hasErrors()) {
             log.error("errors={}", bindingResult.getAllErrors());
             List<String> errorMessageList = bindingResult.getAllErrors()
