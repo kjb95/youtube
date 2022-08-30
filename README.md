@@ -95,3 +95,4 @@ https://user-images.githubusercontent.com/107471786/182569742-fa301ae5-57c7-4edf
 - Java 에서는 JavaDoc, JavaScript 에서는 JSDoc 주석 사용
 - 네이밍 컨벤션 규칙 준수
 - 회원가입/로그인 기능 추가 (로그인 유지 구현 x, 구글 OAuth 구현 x)
+- 필터, 인터셉터를 이용하여 공통 로직 처리(컨트롤러에 도달하는 모든 요청마다 로그 남기기)

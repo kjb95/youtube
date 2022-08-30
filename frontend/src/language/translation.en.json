@@ -27,5 +27,6 @@
   "signUpSuccess": "Congratulations On Becoming A Member.\nLog In With Your Registered ID.",
   "notNullID": "Enter Your ID",
   "IDDoesNotExist": "ID Does Not Exist",
-  "wrongPassword": "Wrong Password"
+  "wrongPassword": "Wrong Password",
+  "404": "404"
 }
