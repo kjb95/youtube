@@ -4,9 +4,9 @@ import com.kjb95.backend.dto.CreateVideoRequestDto;
 import com.kjb95.backend.dto.VideoDto;
 import com.kjb95.backend.entity.Video;
 import com.kjb95.backend.repository.VideoRepository;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
@@ -39,12 +39,10 @@ public class VideoService {
      * @return 모든 동영상 리스트
      */
     public List<VideoDto> findAllVideo(String language) {
-        List<VideoDto> videoDtoList = new ArrayList();
-        List<Video> videoList = videoRepository.findAll(Sort.by(Direction.ASC, "publishedAt"));
-        for (Video video : videoList) {
-            videoDtoList.add(video.toVideoDto(language));
-        }
-        return videoDtoList;
+        return videoRepository.findAll(Sort.by(Direction.ASC, "publishedAt"))
+            .stream()
+            .map(video -> video.toVideoDto(language))
+            .collect(Collectors.toList());
     }
 
     /**
@@ -54,12 +52,12 @@ public class VideoService {
      * @return 랜덤으로 섞은 동영상 리스트
      */
     private List<VideoDto> combineVideoDtoList(List<VideoDto> videoDtoList) {
-        for (int i = 0; i < videoDtoList.size(); i++) {
-            VideoDto temp = videoDtoList.get(i);
+        videoDtoList.forEach(videoDto -> {
+            VideoDto temp = videoDto;
             int randomNumber = (int) (Math.random() * videoDtoList.size());
-            videoDtoList.set(i, videoDtoList.get(randomNumber));
+            videoDtoList.set(videoDtoList.indexOf(videoDto), videoDtoList.get(randomNumber));
             videoDtoList.set(randomNumber, temp);
-        }
+        });
         return videoDtoList;
     }
 
@@ -70,10 +68,7 @@ public class VideoService {
      * @return 랜덤으로 섞은 동영상 리스트
      */
     public List<VideoDto> findRandomVideo(String language) {
-        List<VideoDto> videoDtoList = new ArrayList();
-        videoRepository.findAll()
-            .forEach(video -> videoDtoList.add(video.toVideoDto(language)));
-        return combineVideoDtoList(videoDtoList);
+        return combineVideoDtoList(findAllVideo(language));
     }
 
     /**
@@ -83,11 +78,9 @@ public class VideoService {
      */
     public void deleteVideoByIdList(@RequestBody Map<String, Boolean> videoIds) {
         videoRepository.findAll()
+            .stream()
+            .filter(video -> videoIds.get(video.getId()) == true)
             .forEach(video -> {
-                if (videoIds.get(video.getId()) == null || videoIds.get(video.getId()) == false) {
-                    return;
-                }
-
                 log.info("deleteVideoByIdList : {}", video);
                 video.setExist(false);
                 videoRepository.save(video);
