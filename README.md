@@ -10,6 +10,7 @@ https://github.com/kjb95/youtube
 
 - HTML/CSS
 - JavaScript
+- React
 - Java
 - SpringBoot
 - MySQL
